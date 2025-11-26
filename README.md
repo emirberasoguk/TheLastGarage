@@ -331,7 +331,7 @@
 
 ### Sistem Kontrolü
 - [ ] edestek2.kocaeli.edu.tr sistemine erişim
-- [ ] Teslim tarihini kontrol et: **30.11.2025**
+- [ ] Teslim tarihini kontrol et: **03.12.2025**
 - [ ] 3 gün öncesine kadar soru sor
 
 ---
@@ -363,12 +363,8 @@
 
 ## 📅 ÖNERİLEN ZAMAN ÇİZELGESİ
 
-- **Hafta 1**: Konsept seçimi, sınıf mimarisi tasarımı
-- **Hafta 2**: Temel sınıfları kodlama, oyun mekaniği
-- **Hafta 3**: GUI geliştirme, entegrasyon
-- **Hafta 4**: Test, hata ayıklama, log sistemi
-- **Hafta 5**: Rapor yazımı, sunum hazırlığı
-- **Teslim**: 30.11.2025
+- **Hafta 1**: Konsept seçimi, sınıf mimarisi tasarımı; Temel sınıfları kodlama, oyun mekaniği; GUI geliştirme, entegrasyon; Test, hata ayıklama, log sistemi; Rapor yazımı, sunum hazırlığı.
+- **Teslim**: 03.12.2025
 
 ---
 
