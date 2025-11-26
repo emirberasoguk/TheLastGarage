@@ -5,11 +5,11 @@
 ## 📋 PROJE GENELİ
 
 ### Başlangıç Hazırlıkları
-- [*] Proje ekibini oluştur (Emre Acar,Emir Bera Soğuk)
-- [*] Programlama dilini seç (Java)
+- [x] Proje ekibini oluştur (Emre Acar,Emir Bera Soğuk)
+- [x] Programlama dilini seç (Java)
 - [ ] GUI kütüphanesini belirle (WinForms/WPF/JavaFX/Swing)
 - [ ] Proje klasör yapısını oluştur
-- [*] Versiyon kontrol sistemi kur (Git)
+- [x] Versiyon kontrol sistemi kur (Git)
 
 ---
 
