@@ -5,6 +5,7 @@
 ## 📋 PROJE GENELİ
 
 ### Başlangıç Hazırlıkları
+
 - [x] Proje ekibini oluştur (Emre Acar,Emir Bera Soğuk)
 - [x] Programlama dilini seç (Java)
 - [ ] GUI kütüphanesini belirle (WinForms/WPF/JavaFX/Swing)
@@ -16,6 +17,7 @@
 ## 🎨 FAZA 1: KONSEPT TASARIMI
 
 ### Oyun Konsepti Seçimi
+
 - [ ] Özgün bir tema seç (Antik Mısır, Uzay, Siber Şehir vb.)
 - [ ] Tema ile ilgili isimlendirme stratejisi belirle
 - [ ] Düşman türlerinin konsepte uygun isimlerini belirle
@@ -23,6 +25,7 @@
 - [ ] Oyun değişkenlerinin konsepte uygun isimlerini belirle (can→shieldIntegrity gibi)
 
 ### Görsel Tasarım
+
 - [ ] Arka plan tasarımını hazırla
 - [ ] Yol geometrisi tasarımını yap
 - [ ] Her kule türü için sembol/ikon tasarla (3 adet)
@@ -35,6 +38,7 @@
 ## 💻 FAZA 2: TEMEL SINIF MİMARİSİ
 
 ### Soyut/Base Sınıflar
+
 - [ ] `Enemy` (Düşman) base sınıfını oluştur
   - [ ] Özellikler: can, maksimumCan, hız, pozisyon, zırh
   - [ ] Metotlar: hareket(), hasarAl(), öl(), ussUlas()
@@ -44,6 +48,7 @@
   - [ ] Metotlar: hedefBul(), ateşEt(), hasarHesapla()
 
 ### Düşman Sınıfları (3 adet)
+
 - [ ] **Standart Düşman** sınıfını oluştur
   - [ ] Can: 50
   - [ ] Hız: 50
@@ -69,6 +74,7 @@
   - [ ] Üs hasarı: 5 can
 
 ### Kule Sınıfları (3 adet)
+
 - [ ] **Okçu Kulesi** sınıfını oluştur
   - [ ] Hasar: 10 (zırhlıya %50 daha az)
   - [ ] Ateş hızı: 1 saniye
@@ -94,6 +100,7 @@
 ## 🎮 FAZA 3: OYUN MEKANİĞİ
 
 ### Oyun Başlangıcı
+
 - [ ] Oyuncu sınıfı oluştur
   - [ ] Can: 100
   - [ ] Para: 200
@@ -112,12 +119,14 @@
   - [ ] Her türden en az 1 tane
 
 ### Harita ve Yol Sistemi
+
 - [ ] Harita sınıfı oluştur
 - [ ] Yol noktalarını tanımla (başlangıç→üs)
 - [ ] Kule inşa alanlarını belirle
 - [ ] Yol takip algoritması yaz
 
 ### Düşman Hareketi
+
 - [ ] Düşman hareket metodunu kodla
 - [ ] Yol takip sistemi geliştir
 - [ ] Hız değişimi sistemi (yavaşlatma için)
@@ -125,6 +134,7 @@
 - [ ] Üsse ulaşınca silme ve hasar verme
 
 ### Kule Ateş Sistemi
+
 - [ ] Menzil kontrolü algoritması
 - [ ] Hedef bulma algoritması (üsse en yakın)
 - [ ] Ateş hızı zamanlayıcısı (Timer)
@@ -133,6 +143,7 @@
 - [ ] Buz kulesi yavaşlatma efekti (3 saniye zamanlayıcı)
 
 ### Oyun Döngüsü
+
 - [ ] Ana oyun döngüsü (game loop) oluştur
 - [ ] Zamanlayıcı sistemi kur (her frame güncelleme)
 - [ ] Düşman pozisyon güncelleme
@@ -146,11 +157,13 @@
 ## 🖼️ FAZA 4: GRAFİKSEL KULLANICI ARAYÜZÜ
 
 ### Ana Menü
+
 - [ ] Ana menü ekranı tasarla
 - [ ] "Oyunu Başlat" butonu
 - [ ] "Çıkış" butonu
 
 ### Oyun Ekranı
+
 - [ ] Harita çizim sistemi
   - [ ] Yolu çiz (başlangıç→bitiş)
   - [ ] Kule inşa alanlarını işaretle
@@ -168,6 +181,7 @@
   - [ ] Buton aktif/pasif durumu (para kontrolü)
 
 ### Dinamik Görselleştirme
+
 - [ ] Düşman sağlık barı sistemi
   - [ ] Her düşmanın üstünde bar
   - [ ] Can/MaxCan oranını göster
@@ -187,6 +201,7 @@
   - [ ] Hasar göstergesi
 
 ### Kullanıcı Etkileşimi
+
 - [ ] Kule seçme sistemi (buton tıklama)
 - [ ] Haritada kule yerleştirme sistemi (mouse tıklama)
 - [ ] Para yeterliliği kontrolü
@@ -198,10 +213,12 @@
 ## 📝 FAZA 5: SİMÜLASYON GÜNLÜK DOSYASI
 
 ### Log Sistemi
+
 - [ ] Log dosyası oluşturma (`savunma_gunlugu.txt`)
 - [ ] Zaman damgası sistemi
 
 ### Kayıt Edilecek Olaylar
+
 - [ ] Simülasyon başlangıcı (Can, Para)
 - [ ] Kule inşa edilmesi (konum, ID, kalan para)
 - [ ] Dalga başlangıcı (dalga no, düşman türü, sayı)
@@ -215,6 +232,7 @@
 - [ ] Oyun sonu (kazanma/kaybetme, kalan can, toplam para)
 
 ### Log Formatı
+
 - [ ] Konsept diline uygun isimlendirme kullan
 - [ ] Her olay detaylı açıklama içermeli
 - [ ] Sayısal değerler net görünmeli
@@ -224,6 +242,7 @@
 ## 📊 FAZA 6: TEST VE HATA AYIKLAMA
 
 ### Birim Testleri
+
 - [ ] Düşman hareket testleri
 - [ ] Kule ateş testleri
 - [ ] Hasar hesaplama testleri
@@ -232,6 +251,7 @@
 - [ ] Alan hasarı testleri
 
 ### Entegrasyon Testleri
+
 - [ ] Tam oyun senaryosu testi
 - [ ] Dalga geçişleri testi
 - [ ] Kazanma senaryosu testi
@@ -239,6 +259,7 @@
 - [ ] GUI-simülasyon senkronizasyonu testi
 
 ### Hata Kontrolü
+
 - [ ] Null pointer/reference kontrolleri
 - [ ] Sınır değer testleri
 - [ ] Para yeterliliği hataları
@@ -249,6 +270,7 @@
 ## 📄 FAZA 7: PROJE RAPORU (IEEE FORMAT)
 
 ### Rapor Bölümleri
+
 - [ ] **Özet** (Abstract)
   - [ ] Projenin amacı
   - [ ] Kullanılan teknolojiler
@@ -288,6 +310,7 @@
   - [ ] Kullanılan kaynaklar (IEEE format)
 
 ### Rapor Formatı
+
 - [ ] LaTeX veya Word kullan
 - [ ] PDF formatında kaydet
 - [ ] En az 4 sayfa
@@ -298,12 +321,14 @@
 ## 🎯 FAZA 8: SUNUM HAZIRLIĞI
 
 ### Sunum İçeriği
+
 - [ ] Demo videosu hazırla
 - [ ] Kod açıklama senaryosu yaz
 - [ ] NYP ilkeleri örnekleri hazırla
 - [ ] Sorulabilecek soruları tahmin et
 
 ### Teknik Hazırlık
+
 - [ ] Kodun her satırını açıklayabilir durumda ol
 - [ ] Kalıtım örnekleri göster
 - [ ] Polimorfizm kullanımını açıkla
@@ -311,6 +336,7 @@
 - [ ] Soyutlama mantığını açıkla
 
 ### Canlı Test
+
 - [ ] Sunumda çalışacak bilgisayarı test et
 - [ ] Kod değiştirip çalıştırma pratiği yap
 - [ ] Yedek dosyalar hazırla
@@ -320,6 +346,7 @@
 ## 📦 FAZA 9: TESLİM
 
 ### Teslim Dosyaları
+
 - [ ] Kaynak kod dosyaları (.cs, .java vb.)
 - [ ] Proje raporu (PDF)
 - [ ] savunma_gunlugu.txt örnek çıktısı
@@ -328,6 +355,7 @@
 - [ ] Görsel dosyalar (asset'ler)
 
 ### Sistem Kontrolü
+
 - [ ] edestek2.kocaeli.edu.tr sistemine erişim
 - [ ] Teslim tarihini kontrol et: **03.12.2025**
 - [ ] 3 gün öncesine kadar soru sor
@@ -337,12 +365,14 @@
 ## ⚠️ ÖNEMLİ HATIRLATMALAR
 
 ### NYP İlkeleri Kontrol Listesi
+
 - [ ] **Kalıtım**: Enemy ve Tower base sınıfları doğru kullanılmış mı?
 - [ ] **Polimorfizm**: Farklı düşman/kule türleri aynı arayüzle çağrılıyor mu?
 - [ ] **Kapsülleme**: Private/protected değişkenler, getter/setter kullanımı
 - [ ] **Soyutlama**: Abstract/interface kullanımı uygun mu?
 
 ### Puan Kriterler Kontrol
+
 - [ ] NYP ilkeleri doğru uygulanmış
 - [ ] GUI canlı ve akıcı çalışıyor
 - [ ] Log dosyası eksiksiz
@@ -351,6 +381,7 @@
 - [ ] Kod okunabilir ve düzenli
 
 ### Son Kontroller
+
 - [ ] Tüm isterleri karşılıyor mu?
 - [ ] Oyun baştan sona çalışıyor mu?
 - [ ] Hiç hata/crash olmuyor mu?
@@ -375,69 +406,78 @@
 ---
 
 # ROL VE BAĞLAM
+
 Sen, Nesne Yönelik Programlama (OOP) konusunda uzmanlaşmış kıdemli bir Oyun Geliştiricisi ve Yazılım Mimarisin. Görevin, aşağıda belirtilen teknik isterlere ve akademik kurallara %100 uygun, tam işlevsel bir **Kule Savunma (Tower Defense)** oyunu tasarlamak ve kodlamaktır.
 
 **Hedef Dil:** [BURAYA DİLİ YAZIN: ÖRN. C# WinForms, Java Swing, Python PyQt vb.]
 
 ## 1. KONSEPT VE TEMA (ÖNEMLİ)
+
 Standart orta çağ teması yerine **özgün bir konsept** geliştirmen gerekiyor (Örn: Siberpunk, Uzay, Mikroskobik Dünya vb.). Tüm sınıf, değişken ve metot isimleri bu konsepte uygun olmalıdır.
-* **Okçu Kulesi:** Tekli hasar veren temel kule (Konsepte uygun isimlendir).
-* **Topçu Kulesi:** Alan hasarı veren kule (Konsepte uygun isimlendir).
-* **Buz Kulesi:** Yavaşlatan kule (Konsepte uygun isimlendir).
-* **Düşmanlar:** Standart, Zırhlı ve Uçan düşmanlar (Konsepte uygun isimlendir).
+- **Okçu Kulesi:** Tekli hasar veren temel kule (Konsepte uygun isimlendir).
+- **Topçu Kulesi:** Alan hasarı veren kule (Konsepte uygun isimlendir).
+- **Buz Kulesi:** Yavaşlatan kule (Konsepte uygun isimlendir).
+- **Düşmanlar:** Standart, Zırhlı ve Uçan düşmanlar (Konsepte uygun isimlendir).
 
 ## 2. TEKNİK MİMARİ VE OOP İLKELERİ
+
 Kod, aşağıdaki prensiplere sıkı sıkıya bağlı olmalıdır:
-* **Kalıtım (Inheritance):** `Enemy` (Düşman) ve `Tower` (Kule) adında abstract (soyut) temel sınıflar olmalı, diğer tüm birimler bunlardan türetilmelidir.
-* **Polimorfizm:** Saldırı ve hareket metotları override edilerek her birim için özelleştirilmelidir.
-* **Kapsülleme (Encapsulation):** Değişkenler private/protected olmalı, erişim için property veya getter/setter kullanılmalıdır.
-* **Soyutlama (Abstraction):** Temel mantık abstract sınıflarda veya arayüzlerde (interface) tutulmalıdır.
+- **Kalıtım (Inheritance):** `Enemy` (Düşman) ve `Tower` (Kule) adında abstract (soyut) temel sınıflar olmalı, diğer tüm birimler bunlardan türetilmelidir.
+- **Polimorfizm:** Saldırı ve hareket metotları override edilerek her birim için özelleştirilmelidir.
+- **Kapsülleme (Encapsulation):** Değişkenler private/protected olmalı, erişim için property veya getter/setter kullanılmalıdır.
+- **Soyutlama (Abstraction):** Temel mantık abstract sınıflarda veya arayüzlerde (interface) tutulmalıdır.
 
 ## 3. OYUN MEKANİKLERİ VE MATEMATİKSEL FORMÜLLER
 
 ### A. Düşman Özellikleri
-1.  **Standart Düşman:** Can: 50, Hız: 50, Zırh: Yok, Uçma: Hayır. Ödül: 10 Para. Üs Hasarı: 5. (Başlangıçta en az 2 adet).
-2.  **Zırhlı Düşman:** Can: 75, Hız: 25, Zırh: 50-100 arası (Rastgele), Uçma: Hayır. Ödül: 20 Para. Üs Hasarı: 10. (Başlangıçta en az 1 adet).
-3.  **Uçan Düşman:** Can: 50, Hız: 75, Zırh: Yok, Uçma: Evet. Ödül: 15 Para. Üs Hasarı: 5. (Başlangıçta en az 1 adet).
+
+1. **Standart Düşman:** Can: 50, Hız: 50, Zırh: Yok, Uçma: Hayır. Ödül: 10 Para. Üs Hasarı: 5. (Başlangıçta en az 2 adet).
+2. **Zırhlı Düşman:** Can: 75, Hız: 25, Zırh: 50-100 arası (Rastgele), Uçma: Hayır. Ödül: 20 Para. Üs Hasarı: 10. (Başlangıçta en az 1 adet).
+3. **Uçan Düşman:** Can: 50, Hız: 75, Zırh: Yok, Uçma: Evet. Ödül: 15 Para. Üs Hasarı: 5. (Başlangıçta en az 1 adet).
 
 ### B. Kule Özellikleri
-1.  **Tip 1 (Okçu Mantığı):** Hasar: 10. Atış Hızı: 1sn. Maliyet: 50. Özellik: Zırhlı düşmana %50 az hasar verir. Hedef: Menzildeki tek düşman (Üsse en yakın).
-2.  **Tip 2 (Topçu Mantığı):** Hasar: 20. Atış Hızı: 3sn. Maliyet: 75. Özellik: Alan hasarı (50px yarıçap). Uçan düşmanları vuramaz.
-3.  **Tip 3 (Buz Mantığı):** Hasar: 15. Atış Hızı: 2sn. Maliyet: 70. Özellik: Düşmanı 3 saniye boyunca %50 yavaşlatır.
+
+1. **Tip 1 (Okçu Mantığı):** Hasar: 10. Atış Hızı: 1sn. Maliyet: 50. Özellik: Zırhlı düşmana %50 az hasar verir. Hedef: Menzildeki tek düşman (Üsse en yakın).
+2. **Tip 2 (Topçu Mantığı):** Hasar: 20. Atış Hızı: 3sn. Maliyet: 75. Özellik: Alan hasarı (50px yarıçap). Uçan düşmanları vuramaz.
+3. **Tip 3 (Buz Mantığı):** Hasar: 15. Atış Hızı: 2sn. Maliyet: 70. Özellik: Düşmanı 3 saniye boyunca %50 yavaşlatır.
 
 ### C. Hasar Hesaplama Formülü (ZORUNLU)
+
 Her vuruşta şu formülü uygula:
 `Net_Hasar = Kule_Hasarı * (1 - (Zırh / (Zırh + 100.0)))`
 
 ### D. Dalga (Wave) Yönetimi
-* **Oyuncu:** Başlangıç Can: 100, Para: 200.
-* **Dalga 1:** Sabit (2 Standart, 1 Zırhlı, 1 Uçan).
-* **Dalga 2:** Rastgele (En az 5, en fazla 10 düşman. Her türden en az 1 tane olmak zorunda).
-* **Kazanma/Kaybetme:** Can <= 0 ise Kaybet. Tüm dalgalar bitti ve harita temizse Kazan.
+- **Oyuncu:** Başlangıç Can: 100, Para: 200.
+- **Dalga 1:** Sabit (2 Standart, 1 Zırhlı, 1 Uçan).
+- **Dalga 2:** Rastgele (En az 5, en fazla 10 düşman. Her türden en az 1 tane olmak zorunda).
+- **Kazanma/Kaybetme:** Can <= 0 ise Kaybet. Tüm dalgalar bitti ve harita temizse Kazan.
 
 ## 4. GUI VE GÖRSELLEŞTİRME İSTERLERİ
-* **Harita:** Yol (Path) belirgin olmalı. Kuleler sadece yola değil, boş alanlara inşa edilebilir.
-* **Can Barları:** Her düşmanın üzerinde anlık güncellenen can barı olmalı.
-* **Efektler:** Yavaşlayan düşman maviye dönmeli veya görsel bir işaret almalı.
-* **Panel:** Oyuncu Canı, Para ve Dalga bilgisi sürekli görünmeli.
-* **Kontroller:** Kule butonları (Para yetmiyorsa pasif/gri olmalı).
+- **Harita:** Yol (Path) belirgin olmalı. Kuleler sadece yola değil, boş alanlara inşa edilebilir.
+- **Can Barları:** Her düşmanın üzerinde anlık güncellenen can barı olmalı.
+- **Efektler:** Yavaşlayan düşman maviye dönmeli veya görsel bir işaret almalı.
+- **Panel:** Oyuncu Canı, Para ve Dalga bilgisi sürekli görünmeli.
+- **Kontroller:** Kule butonları (Para yetmiyorsa pasif/gri olmalı).
 
 ## 5. LOGLAMA SİSTEMİ (ÇOK ÖNEMLİ)
+
 Oyun sırasında gerçekleşen her olay `savunma_gunlugu.txt` dosyasına aşağıdaki formatta ve sırayla kaydedilmelidir:
-* Simülasyon Başlangıcı (Can/Para).
-* Kule İnşaatı (Konum, Tür, Kalan Para).
-* Dalga Başlangıcı.
-* Düşman Girişi (ID, Özellikler).
-* Kule Hedeflemesi ve Atış (Zırh formülü sonucu net hasar).
-* Düşman Ölümü ve Ödül.
-* Oyun Sonu.
+- Simülasyon Başlangıcı (Can/Para).
+- Kule İnşaatı (Konum, Tür, Kalan Para).
+- Dalga Başlangıcı.
+- Düşman Girişi (ID, Özellikler).
+- Kule Hedeflemesi ve Atış (Zırh formülü sonucu net hasar).
+- Düşman Ölümü ve Ödül.
+- Oyun Sonu.
 
 ## ÇIKTI BEKLENTİSİ
+
 Lütfen projeyi şu adımlarla sun:
-1.  **Konsept Tanımı:** Seçtiğin tema ve sınıf isimlerinin karşılıkları.
-2.  **Sınıf Diyagramı (Metin Bazlı):** Hangi sınıfın hangi özelliklere sahip olduğu.
-3.  **Kaynak Kodlar:** Tüm sınıflar ve GUI kodları (Tek parça veya modüler).
-4.  **Log Dosyası Örneği:** Kodun üreteceği örnek bir log çıktısı.
+
+1. **Konsept Tanımı:** Seçtiğin tema ve sınıf isimlerinin karşılıkları.
+2. **Sınıf Diyagramı (Metin Bazlı):** Hangi sınıfın hangi özelliklere sahip olduğu.
+3. **Kaynak Kodlar:** Tüm sınıflar ve GUI kodları (Tek parça veya modüler).
+4. **Log Dosyası Örneği:** Kodun üreteceği örnek bir log çıktısı.
 
 Kodlamaya başla.
 
