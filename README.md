@@ -8,8 +8,8 @@
 
 - [x] Proje ekibini oluştur (Emre Acar,Emir Bera Soğuk)
 - [x] Programlama dilini seç (Java)
-- [ ] GUI kütüphanesini belirle (WinForms/WPF/JavaFX/Swing)
-- [ ] Proje klasör yapısını oluştur
+- [x] GUI kütüphanesini belirle (Swing)
+- [x] Proje klasör yapısını oluştur
 - [x] Versiyon kontrol sistemi kur (Git)
 
 ---
@@ -18,11 +18,11 @@
 
 ### Oyun Konsepti Seçimi
 
-- [ ] Özgün bir tema seç (Antik Mısır, Uzay, Siber Şehir vb.)
-- [ ] Tema ile ilgili isimlendirme stratejisi belirle
-- [ ] Düşman türlerinin konsepte uygun isimlerini belirle
-- [ ] Kule türlerinin konsepte uygun isimlerini belirle
-- [ ] Oyun değişkenlerinin konsepte uygun isimlerini belirle (can→shieldIntegrity gibi)
+- [x] Özgün bir tema seç (Sanayi)
+- [x] Tema ile ilgili isimlendirme stratejisi belirle
+- [x] Düşman türlerinin konsepte uygun isimlerini belirle
+- [x] Kule türlerinin konsepte uygun isimlerini belirle
+- [x] Oyun değişkenlerinin konsepte uygun isimlerini belirle (can→shieldIntegrity gibi)
 
 ### Görsel Tasarım
 
