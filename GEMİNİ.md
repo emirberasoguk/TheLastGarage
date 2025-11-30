@@ -6,7 +6,7 @@
 
 Sen, Nesne Yönelik Programlama (OOP) konusunda uzmanlaşmış kıdemli bir Oyun Geliştiricisi ve Yazılım Mimarisin. Görevin, aşağıda belirtilen teknik isterlere ve akademik kurallara %100 uygun, tam işlevsel bir **Kule Savunma (Tower Defense)** oyunu tasarlamamıza ve kodlamamıza yardım etmektir. Kod yazmamalısın sadece proje mentörlüğü yapacaksın, aklımıza takılanlara çözüm sunacaksın ve yol göstereceksin.
 
-**Hedef Dil:** Java (Swing Kütüphanesi ile)
+**Hedef Dil:** Java (libGDX)
 
 ## 1. KONSEPT VE TEMA: "SANAYİ HURDALIĞI"
 
@@ -110,28 +110,29 @@ Oyun sırasında gerçekleşen her olay `savunma_gunlugu.txt` dosyasına kaydedi
 
 - Oyun Sonu.
 
-
 ## İlerleme Durumu (29.11.2025)
 
 ### ✅ Tamamlananlar
+
 - **Proje Yapısı:** `src/` klasörü ve alt paketler (`entity`, `gui`, `logic`, `util`) oluşturuldu.
 - **Temel Sınıflar (Base Classes):**
-    - `src/entity/Enemy.java` (Abstract): Can, zırh, hız özellikleri ve `move()`, `draw()` soyut metotları tanımlandı.
-    - `src/entity/Tower.java` (Abstract): Hasar, menzil, maliyet özellikleri tanımlandı.
+  - `src/entity/Enemy.java` (Abstract): Can, zırh, hız özellikleri ve `move()`, `draw()` soyut metotları tanımlandı.
+  - `src/entity/Tower.java` (Abstract): Hasar, menzil, maliyet özellikleri tanımlandı.
 - **Örnek Alt Sınıflar:**
-    - `src/entity/CrossMotor.java`: `Enemy` sınıfından türetildi.
-    - `src/entity/CivataKulesi.java`: `Tower` sınıfından türetildi.
+  - `src/entity/CrossMotor.java`: `Enemy` sınıfından türetildi.
+  - `src/entity/CivataKulesi.java`: `Tower` sınıfından türetildi.
 - **GUI İskeleti:**
-    - `src/gui/GameFrame.java`: Ana pencere oluşturuldu.
-    - `src/gui/GamePanel.java`: Oyun döngüsü (Game Loop) ve çizim alanı (`paintComponent`) hazırlandı.
+  - `src/gui/GameFrame.java`: Ana pencere oluşturuldu.
+  - `src/gui/GamePanel.java`: Oyun döngüsü (Game Loop) ve çizim alanı (`paintComponent`) hazırlandı.
 - **Giriş Noktası:** `src/Main.java` oluşturuldu.
 
 ### 🚧 Sırada Yapılacaklar (Acil)
-1.  **Varlıkların Tamamlanması:**
+
+1. **Varlıkların Tamamlanması:**
     - `ZirhliKamyon` ve `Ucak` sınıflarının `Enemy`den türetilmesi.
     - `AnahtarFirlatici` ve `YaglamaKulesi` sınıflarının `Tower`dan türetilmesi.
-2.  **Oyun Mantığı:**
+2. **Oyun Mantığı:**
     - `Enemy` sınıfında `takeDamage` metoduna zırh formülünün eklenmesi.
     - Harita ve Yol (Path) sisteminin tasarlanması.
-3.  **Görselleştirme:**
+3. **Görselleştirme:**
     - Basit şekillerle (Kare/Daire) varlıkların ekrana çizdirilmesi.

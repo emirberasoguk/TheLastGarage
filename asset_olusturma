@@ -1,0 +1,28 @@
+[STYLE PREFIX]: 2D game asset, isometric view, stylized hand-drawn dieselpunk aesthetic inspired by Mad Max and Earn to Die. Heavy rust, corrosion, welded scrap metal plates, exhaust smoke, and industrial grime. Bold outlines, textured brushstrokes. Desaturated earthy color palette (browns, rusty oranges, greys). Isolated on completely transparent background, clean cutout PNG asset, no background elements.
+
+1. ÜS ve PARA BİRİMİ PROMPTLARI (Transparan)
+Ana Garaj (Main Garage)
+Prompt: [STYLE PREFIX] A large, fortified main garage building made entirely of salvaged scrap metal, rusted car bodies, and corrugated iron sheets welded together. Several chimneys pumping out thick black smoke. Spikes and barbed wire on the roof. Reinforced metal roll-up doors at the front. The entire structure is isolated as a standalone object with clean edges on transparency.
+
+Hurda (Scrap) - Para Birimi İkonu
+Prompt: [STYLE PREFIX] UI icon for game currency. A small, stylized pile of assorted rusty metal gears, twisted pipes, jagged metal plates, and bolts. Simple, readable silhouette, isolated cutout icon with absolutely no background.
+
+2. KULE PROMPTLARI (Transparan)
+Civata Kulesi (Bolt Tower)
+Prompt: [STYLE PREFIX] Tower defense turret, level 1. A makeshift rapid-fire turret built from engine blocks and rusty pipes mounted on a metal tripod base. It has a visible ammo belt feeding large, jagged rusty bolts into a multi-barreled mechanism. Barrel pointed slightly downward. Looks frantic and crude. Cleanly isolated on a transparent layer.
+
+Anahtar Fırlatıcı (Wrench Launcher)
+Prompt: [STYLE PREFIX] Tower defense turret, heavy artillery type. A large, crude catapult mechanism constructed from heavy iron girders and massive truck suspension springs. It is loaded with a comically oversized, rusty monkey wrench ready to be launched. The structure looks very heavy and industrial, floating on transparency with no ground shadow.
+
+Yağlama Kulesi (Oil Tower)
+Prompt: [STYLE PREFIX] Tower defense support tower. A rusted, corroded structure resembling a miniature old oil derrick or pumpjack. It has several nozzles spraying thick, black, gooey motor oil onto the ground directly surrounding its base. The oil puddles and the tower are a single isolated asset with clean edges on a transparent background.
+
+3. DÜŞMAN PROMPTLARI (Transparan)
+Cross Motor (Cross Motorcycle)
+Prompt: [STYLE PREFIX] 2D enemy game sprite, side view. A post-apocalyptic motocross bike, stripped down and covered in small spikes and rusty metal plates. The rider is wearing ragged leather gear and a gas mask. Exhaust pipe emitting a trail of dark smoke. Looks fast, agile, and dangerous. The entire sprite, including smoke, has a clean cutout on transparency.
+
+Zırhlı Kamyon (Armored Truck)
+Prompt: [STYLE PREFIX] 2D enemy game sprite, side view. A massive, bulky semi-truck completely encased in makeshift heavy armor plates, reinforced ramming bumpers, spikes, and barbed wire mesh over windows. Rolling thick coal black smoke from vertical exhausts. Looks incredibly heavy, slow, and tough to destroy. Isolated asset with transparent background.
+
+Pervaneli Uçak (Propeller Plane)
+Prompt: [STYLE PREFIX] 2D airborne enemy game sprite, side view flying unit. A ramshackle propeller plane patched together with mismatched scrap metal sheets. One large, noisy propeller on the nose. The wings look damaged but functional, reinforced with metal bars. It looks unstable and makeshift. Flying through the air, isolated on a transparent layer with no sky.

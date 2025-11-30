@@ -2,6 +2,7 @@ package entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
 
 // Civata Kulesi (Okçu Kulesi Mantığı)
 public class CivataKulesi extends Tower {
@@ -12,14 +13,19 @@ public class CivataKulesi extends Tower {
     }
 
     @Override
-    public void attack(Enemy e) {
-        // TODO: Düşmanın canını azalt
-        // Özellik: Zırhlı düşmana %50 az hasar verir. Kontrol et.
+    public void attack(Enemy e, List<Enemy> allEnemies) {
+        int appliedDamage = this.damage;
+        // Özellik: Zırhlı düşmana %50 az hasar verir.
+        if (e.getArmor() > 0) {
+            appliedDamage /= 2;
+        }
+        e.takeDamage(appliedDamage);
+        this.lastAttackTime = System.currentTimeMillis();
     }
 
     @Override
     public void draw(Graphics g) {
-        // TODO: Kuleyi çiz (Örn: Mavi Kare)
+        // Mavi Kare
         g.setColor(Color.BLUE);
         g.fillRect(x, y, 30, 30);
     }
