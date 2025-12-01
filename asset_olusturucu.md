@@ -1,39 +1,38 @@
-YENİ ANA STİL BLOKU (Pixel Art Prefix)
-Bu yeni prefix, AI'ya retro, düşük çözünürlüklü, piksellerin sayıldığı ve anti-aliasing (yumuşatma) olmayan bir tarz istediğimizi net bir şekilde belirtecek.
+Global Style Modifier (Append to all):
 
-[STYLE PREFIX]: Isometric 2D pixel art game asset. Post-apocalyptic dieselpunk theme inspired by Earn to Die. Rusty metal, exhaust smoke, industrial waste grime. Low resolution retro style (like 16-bit era SNES/Genesis games), visible pixel grid, limited desaturated color palette (rust browns, oranges, greys, olive greens). No anti-aliasing, jagged pixel edges. Isolated sprite on completely transparent background with no shadow.
+Top-down 2D pixel art game asset, directly overhead bird's eye view (90-degree angle), dieselpunk aesthetic, rusty metal textures, industrial grime, low resolution, jagged edges, no anti-aliasing, pixel-perfect, desaturated palette (rust orange, olive green, slate grey), isolated on white background
 
-1. ÜS ve PARA BİRİMİ (İzometrik Pixel Art)
-Ana Garaj (Main Garage)
-Konsept: Oyun alanında (grid üzerinde) büyük bir yer kaplayan, piksellerle detaylandırılmış ana bina.
+1. BASE & CURRENCY (Top-Down)
+Main Garage:
 
-Prompt: [STYLE PREFIX] Large isometric pixel art building sprite. A fortified main garage made of salvaged rusty metal plates, car bodies, and corrugated iron. Spikes on the roof, thick pixel smoke puffing from chimneys. Reinforced roll-up doors facing southeast. Detailed pixel work showing rust textures and welding spots. The base fits neatly into an isometric tile grid.
+Prompt: Top-down view of a large main garage building. Focus on the rooftop details: rusty corrugated iron sheets patched together, vents, and a helipad-like marking. Smoking chimneys visible from above. Reinforced roof spikes. Rectangular footprint fits a tile grid. [Global Style Modifier]
 
-Hurda (Scrap) - Para Birimi İkonu
-Konsept: UI için çok küçük, okunaklı bir piksel yığını.
+Currency Icon (Scrap):
 
-Prompt: [STYLE PREFIX] Small pixel art UI icon for currency. A minimalist pixel pile of rusty gears, bent pipes, and metal scraps. Clear silhouette, readable even at small size.
+Prompt: Top-down view UI icon, a scattered pile of scrap metal. Rusty gears lying flat, bent pipes, and metal shards seen from above. High contrast, clear silhouette. [Global Style Modifier]
 
-2. KULELER (İzometrik Pixel Art)
-Not: Kulelerin oyun içinde bir yöne bakması gerekir. Genellikle izometrik oyunlarda "aşağı-sağa" (Southeast) veya "aşağı-sola" (Southwest) bakarlar. Tutarlılık için hepsini güneydoğuya (Southeast) baktırıyorum.
+2. TURRETS (Top-Down, Facing Southeast)
+Bolt Tower:
 
-Civata Kulesi (Bolt Tower)
-Prompt: [STYLE PREFIX] Isometric pixel art turret sprite, facing Southeast. A crude rapid-fire weapon built from an old engine block and rusty pipes mounted on a tripod. Pixelated ammo belt feeding bolts into the mechanism. Barrel angled slightly down.
+Prompt: Top-down view of a turret weapon facing Southeast. The top of a V8 engine block is visible. Two parallel rusty pipes (barrels) pointing towards the bottom-right corner. An ammo belt feeding into the mechanism from the side. Tripod legs barely visible underneath. [Global Style Modifier]
 
-Anahtar Fırlatıcı (Wrench Launcher)
-Prompt: [STYLE PREFIX] Isometric pixel art heavy turret sprite, facing Southeast. A bulky catapult mechanism made of pixelated iron girders and heavy springs. Loaded with a large, rusty pixel monkey wrench ready to launch. Looks heavy and industrial within the pixel grid.
+Wrench Launcher:
 
-Yağlama Kulesi (Oil Tower)
-Prompt: [STYLE PREFIX] Isometric pixel art support tower sprite. A rusted miniature oil derrick structure. Black pixel goo (motor oil) is spraying from nozzles around its base, creating a pixelated sludge puddle on the imaginary ground around the tower.
+Prompt: Top-down view of a heavy artillery turret facing Southeast. A sturdy rectangular base with a large catapult arm drawn back. A giant rusty monkey wrench is loaded in the cradle, pointing Southeast. Heavy springs visible from above. [Global Style Modifier]
 
-3. DÜŞMANLAR (İzometrik Pixel Art Sprite'ları)
-Not: Düşmanlar yolda hareket edeceği için, onları "izometrik bir yolda ilerliyormuş gibi" (3/4 görünüm) çizdirmek en iyisidir.
+Oil Tower:
 
-Cross Motor (Cross Motorcycle)
-Prompt: [STYLE PREFIX] Isometric pixel art enemy sprite, motorcycle moving Southeast. A stripped-down post-apocalyptic motocross bike with small pixel spikes and armor plates. Rider in pixelated ragged gear. Small puffs of pixel smoke from the exhaust behind it.
+Prompt: Top-down view of a support tower. Top of a rusty oil derrick structure. A square base surrounded by a spreading black pool of motor oil (sludge). Dark liquid stains radiating outward. [Global Style Modifier]
 
-Zırhlı Kamyon (Armored Truck)
-Prompt: [STYLE PREFIX] Isometric pixel art enemy sprite, large truck moving Southeast. A massive semi-truck completely covered in makeshift pixel scrap armor, spikes, and reinforced bumpers. Thick black pixel smoke rising from vertical exhausts. Occupies multiple tiles in width due to its size.
+3. ENEMIES (Top-Down, Moving Southeast)
+Cross Motorcycle:
 
-Pervaneli Uçak (Propeller Plane)
-Prompt: [STYLE PREFIX] Isometric pixel art flying enemy sprite, moving Southeast. A ramshackle propeller plane patched with different colored pixel metal sheets. Large pixel propeller on the nose. Looks unstable. Shadow is NOT included in the sprite.
+Prompt: Top-down view of an enemy motorcycle moving Southeast. Visible elements: The rider's helmet and shoulders, the handlebars, and the top of the fuel tank. The bike is angled diagonally towards bottom-right. A thin trail of pixelated smoke behind the exhaust. [Global Style Modifier]
+
+Armored Truck:
+
+Prompt: Top-down view of a massive enemy semi-truck moving Southeast. Focus on the long rectangular roof of the trailer and the cab. Roof covered in scrap metal armor plates and spikes. Smoke puffing from vertical exhaust pipes seen as circles from above. [Global Style Modifier]
+
+Propeller Plane:
+
+Prompt: Top-down view of a flying enemy plane moving Southeast. Layout shows the full wingspan and fuselage from above. Patched metal sheets on wings. The spinning propeller at the nose is a blurred pixel circle. [Global Style Modifier]
