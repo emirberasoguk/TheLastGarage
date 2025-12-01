@@ -1,99 +1,63 @@
 === SAVUNMA GÜNLÜĞÜ BAŞLANGIÇ ===
-[2025-11-30 23:19:09] Simülasyon Başladı. Can: 100, Hurda: 200
-[2025-11-30 23:19:19] Yaglama Kulesi inşa edildi. Kalan Hurda: 130
-[2025-11-30 23:19:20] Dalga 1 Başladı.
-[2025-11-30 23:19:20] Düşman Girişi: CrossMotor
-[2025-11-30 23:19:22] Düşman Girişi: CrossMotor
-[2025-11-30 23:19:23] Düşman Girişi: ZirhliKamyon
-[2025-11-30 23:19:24] Civata Kulesi inşa edildi. Kalan Hurda: 80
-[2025-11-30 23:19:25] Düşman Girişi: PervaneliUcak
-[2025-11-30 23:19:26] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:19:27] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:19:28] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:19:29] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:19:30] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:19:30] Düşman Öldü: CrossMotor. Ödül: 10
-[2025-11-30 23:19:31] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:19:32] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:19:32] Anahtar Kulesi inşa edildi. Kalan Hurda: 15
-[2025-11-30 23:19:33] Kule Atışı: YaglamaKulesi -> PervaneliUcak
-[2025-11-30 23:19:33] Kule Atışı: AnahtarFirlatici -> CrossMotor
-[2025-11-30 23:19:34] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:19:35] Kule Atışı: YaglamaKulesi -> PervaneliUcak
-[2025-11-30 23:19:35] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:19:36] Kule Atışı: AnahtarFirlatici -> CrossMotor
-[2025-11-30 23:19:36] Düşman Öldü: CrossMotor. Ödül: 10
-[2025-11-30 23:19:36] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:19:36] Düşman Üsse Ulaştı! Hasar: 5. Kalan Can: 95
-[2025-11-30 23:19:37] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:19:38] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:19:39] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:19:40] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:19:41] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:19:42] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:19:43] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:19:44] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:19:45] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
-[2025-11-30 23:19:48] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
-[2025-11-30 23:19:51] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
-[2025-11-30 23:19:54] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
-[2025-11-30 23:19:57] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
-[2025-11-30 23:20:00] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
-[2025-11-30 23:20:00] Düşman Öldü: ZirhliKamyon. Ödül: 20
-[2025-11-30 23:20:00] Dalga 1 Bitti.
-[2025-11-30 23:20:07] Dalga 2 Başladı.
-[2025-11-30 23:20:07] Düşman Girişi: CrossMotor
-[2025-11-30 23:20:09] Düşman Girişi: ZirhliKamyon
-[2025-11-30 23:20:11] Düşman Girişi: PervaneliUcak
-[2025-11-30 23:20:12] Düşman Girişi: CrossMotor
-[2025-11-30 23:20:13] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:20:14] Düşman Girişi: CrossMotor
-[2025-11-30 23:20:14] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:20:15] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:20:15] Düşman Girişi: PervaneliUcak
-[2025-11-30 23:20:16] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:20:17] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:20:17] Düşman Öldü: CrossMotor. Ödül: 10
-[2025-11-30 23:20:18] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:20:18] Kule Atışı: YaglamaKulesi -> PervaneliUcak
-[2025-11-30 23:20:19] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:20:20] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:20] Kule Atışı: YaglamaKulesi -> PervaneliUcak
-[2025-11-30 23:20:21] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:21] Civata Kulesi inşa edildi. Kalan Hurda: 5
-[2025-11-30 23:20:21] Kule Atışı: CivataKulesi -> PervaneliUcak
-[2025-11-30 23:20:22] Düşman Üsse Ulaştı! Hasar: 5. Kalan Can: 90
-[2025-11-30 23:20:22] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:22] Kule Atışı: CivataKulesi -> PervaneliUcak
-[2025-11-30 23:20:23] Kule Atışı: YaglamaKulesi -> PervaneliUcak
-[2025-11-30 23:20:23] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:23] Kule Atışı: AnahtarFirlatici -> CrossMotor
-[2025-11-30 23:20:23] Kule Atışı: CivataKulesi -> PervaneliUcak
-[2025-11-30 23:20:24] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:25] Kule Atışı: YaglamaKulesi -> PervaneliUcak
-[2025-11-30 23:20:25] Düşman Öldü: PervaneliUcak. Ödül: 15
-[2025-11-30 23:20:25] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:26] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:26] Kule Atışı: AnahtarFirlatici -> CrossMotor
-[2025-11-30 23:20:26] Düşman Öldü: CrossMotor. Ödül: 10
-[2025-11-30 23:20:27] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:28] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:29] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:20:29] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:29] Kule Atışı: AnahtarFirlatici -> CrossMotor
-[2025-11-30 23:20:30] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:20:31] Kule Atışı: CivataKulesi -> CrossMotor
-[2025-11-30 23:20:31] Düşman Öldü: CrossMotor. Ödül: 10
-[2025-11-30 23:20:32] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
-[2025-11-30 23:20:35] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
-[2025-11-30 23:20:38] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
-[2025-11-30 23:20:39] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:40] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:41] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
-[2025-11-30 23:20:41] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:42] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:43] Kule Atışı: CivataKulesi -> ZirhliKamyon
-[2025-11-30 23:20:44] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
-[2025-11-30 23:20:44] Düşman Öldü: ZirhliKamyon. Ödül: 20
-[2025-11-30 23:20:44] Dalga 2 Bitti.
-[2025-11-30 23:20:44] Oyun Kazanıldı! Tüm dalgalar temizlendi.
+[2025-12-01 12:07:54] Simülasyon Başladı. Can: 100, Hurda: 200
+[2025-12-01 12:08:09] Yaglama Kulesi inşa edildi. Kalan Hurda: 130
+[2025-12-01 12:08:14] Anahtar Kulesi inşa edildi. Kalan Hurda: 55
+[2025-12-01 12:08:18] Dalga 1 Başladı.
+[2025-12-01 12:08:18] Düşman Girişi: CrossMotor
+[2025-12-01 12:08:18] Kule Atışı: AnahtarFirlatici -> CrossMotor
+[2025-12-01 12:08:20] Düşman Girişi: CrossMotor
+[2025-12-01 12:08:21] Düşman Girişi: ZirhliKamyon
+[2025-12-01 12:08:21] Kule Atışı: AnahtarFirlatici -> CrossMotor
+[2025-12-01 12:08:23] Düşman Girişi: PervaneliUcak
+[2025-12-01 12:08:23] Kule Atışı: YaglamaKulesi -> CrossMotor
+[2025-12-01 12:08:23] Düşman Öldü: CrossMotor. Ödül: 10
+[2025-12-01 12:08:24] Kule Atışı: AnahtarFirlatici -> CrossMotor
+[2025-12-01 12:08:25] Kule Atışı: YaglamaKulesi -> CrossMotor
+[2025-12-01 12:08:27] Kule Atışı: YaglamaKulesi -> CrossMotor
+[2025-12-01 12:08:27] Düşman Öldü: CrossMotor. Ödül: 10
+[2025-12-01 12:08:27] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:08:30] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:08:31] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:08:32] Düşman Üsse Ulaştı! Hasar: 5. Kalan Can: 95
+[2025-12-01 12:08:33] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:08:33] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:08:35] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:08:36] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:08:37] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:08:39] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:08:39] Düşman Öldü: ZirhliKamyon. Ödül: 20
+[2025-12-01 12:08:39] Dalga 1 Bitti.
+[2025-12-01 12:08:43] Civata Kulesi inşa edildi. Kalan Hurda: 45
+[2025-12-01 12:08:45] Dalga 2 Başladı.
+[2025-12-01 12:08:45] Düşman Girişi: CrossMotor
+[2025-12-01 12:08:45] Kule Atışı: AnahtarFirlatici -> CrossMotor
+[2025-12-01 12:08:46] Düşman Girişi: ZirhliKamyon
+[2025-12-01 12:08:48] Kule Atışı: AnahtarFirlatici -> CrossMotor
+[2025-12-01 12:08:48] Düşman Girişi: PervaneliUcak
+[2025-12-01 12:08:50] Düşman Girişi: ZirhliKamyon
+[2025-12-01 12:08:50] Kule Atışı: YaglamaKulesi -> CrossMotor
+[2025-12-01 12:08:50] Düşman Öldü: CrossMotor. Ödül: 10
+[2025-12-01 12:08:51] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:08:51] Düşman Girişi: CrossMotor
+[2025-12-01 12:08:54] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:08:56] Kule Atışı: YaglamaKulesi -> CrossMotor
+[2025-12-01 12:08:57] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:08:57] Düşman Öldü (AOE): CrossMotor
+[2025-12-01 12:08:57] Düşman Üsse Ulaştı! Hasar: 5. Kalan Can: 90
+[2025-12-01 12:08:58] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:09:00] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:09:00] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:09:02] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:09:02] Düşman Öldü: ZirhliKamyon. Ödül: 20
+[2025-12-01 12:09:03] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:09:04] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:09:06] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:09:06] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:09:08] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:09:09] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:09:10] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:09:12] Kule Atışı: AnahtarFirlatici -> ZirhliKamyon
+[2025-12-01 12:09:12] Kule Atışı: YaglamaKulesi -> ZirhliKamyon
+[2025-12-01 12:09:12] Düşman Öldü: ZirhliKamyon. Ödül: 20
+[2025-12-01 12:09:12] Dalga 2 Bitti.
+[2025-12-01 12:09:12] Oyun Kazanıldı! Tüm dalgalar temizlendi.
