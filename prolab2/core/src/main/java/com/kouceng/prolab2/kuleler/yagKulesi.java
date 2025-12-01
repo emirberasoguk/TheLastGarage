@@ -7,10 +7,10 @@ import com.kouceng.prolab2.dusmanlar.*;
 
 public class yagKulesi extends kule {
 
-    public static float range;
+    public static float range = 200;
 
     public yagKulesi(float x, float y) {
-        super(20, 200, 3000, 75, x, y);
+        super(20, range, 3000, 75, x, y);
     }
 
     @Override

@@ -72,7 +72,7 @@ public class GameScreen implements Screen {
         camera.setToOrtho(false, 1280, 720);
         shapeRenderer = new ShapeRenderer();
 
-        mapTexture = new Texture("map.png");
+        mapTexture = new Texture("MAP.png");
 
         initPath();
     }
@@ -259,19 +259,43 @@ public class GameScreen implements Screen {
         for (kule t : towers) {
             if (!t.canAttack()) continue;
 
-            dusman target = null;
+            dusman bestTarget = null;
+            float minDistance = Float.MAX_VALUE;
+
             for (dusman e : enemies) {
+                // Yag kulesi (Oil Tower) cannot target flying enemies
+                if (t instanceof yagKulesi && e.isFlying()) continue;
+
                 if (t.isInRange(e)) {
-                    target = e;
-                    break;
+                    float dist = Vector2.dst(t.getX(), t.getY(), e.getX(), e.getY());
+                    if (dist < minDistance) {
+                        minDistance = dist;
+                        bestTarget = e;
+                    }
                 }
             }
 
-            if (target != null) {
-                t.attack(target, enemies);
-                if (target.isDead()) {
-                    scrap += target.getReward();
-                    enemies.removeValue(target, true);
+            if (bestTarget != null) {
+                t.attack(bestTarget, enemies);
+                
+                // Check if target died (Note: yagKulesi might kill multiple, but we check main target here)
+                // Ideally, we should clean up dead enemies in a separate pass or use an iterator, 
+                // but for now, let's handle the primary target.
+                if (bestTarget.isDead()) {
+                    if (enemies.contains(bestTarget, true)) { // Check if still in list
+                        scrap += bestTarget.getReward();
+                        enemies.removeValue(bestTarget, true);
+                    }
+                }
+                
+                // Also clean up any other enemies that might have died from AOE (like yagKulesi)
+                Iterator<dusman> iter = enemies.iterator();
+                while (iter.hasNext()) {
+                    dusman potentialDead = iter.next();
+                    if (potentialDead.isDead()) {
+                        scrap += potentialDead.getReward();
+                        iter.remove();
+                    }
                 }
             }
         }
@@ -292,16 +316,33 @@ public class GameScreen implements Screen {
 
     private void generateWave(int waveNum) {
         spawnQueue.clear();
-        Random r = new Random();
 
-        int count = 5 + r.nextInt(6);
+        if (waveNum == 1) {
+            // Wave 1: Fixed composition (2 CrossMotor, 1 ZirhliKamyon, 1 Ucak)
+            spawnQueue.add(new crossMotor());
+            spawnQueue.add(new crossMotor());
+            spawnQueue.add(new zirhliKamyon());
+            spawnQueue.add(new ucak());
+        } else {
+            // Other Waves: Min 5, Max 10 enemies, gradually increasing difficulty
+            int totalEnemies = Math.min(10, 3 + waveNum);
 
-        for (int i = 0; i < count; i++) {
-            int t = r.nextInt(3);
+            // Ensure at least one of each type
+            spawnQueue.add(new crossMotor());
+            spawnQueue.add(new zirhliKamyon());
+            spawnQueue.add(new ucak());
 
-            if (t == 0) spawnQueue.add(new crossMotor());
-            if (t == 1) spawnQueue.add(new zirhliKamyon());
-            if (t == 2) spawnQueue.add(new ucak());
+            // Fill the rest randomly
+            Random r = new Random();
+            for (int i = 3; i < totalEnemies; i++) {
+                int type = r.nextInt(3);
+                if (type == 0) spawnQueue.add(new crossMotor());
+                else if (type == 1) spawnQueue.add(new zirhliKamyon());
+                else spawnQueue.add(new ucak());
+            }
+            
+            // Shuffle for randomness
+            spawnQueue.shuffle();
         }
     }
 

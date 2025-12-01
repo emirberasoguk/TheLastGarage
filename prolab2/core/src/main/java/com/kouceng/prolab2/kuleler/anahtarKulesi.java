@@ -7,10 +7,10 @@ import com.kouceng.prolab2.dusmanlar.*;
 
 public class anahtarKulesi extends kule {
 
-    public static float range;
+    public static float range = 150;
 
     public anahtarKulesi(float x, float y) {
-        super(10, 150, 1000, 50, x, y);
+        super(10, range, 1000, 50, x, y);
     }
 
     @Override

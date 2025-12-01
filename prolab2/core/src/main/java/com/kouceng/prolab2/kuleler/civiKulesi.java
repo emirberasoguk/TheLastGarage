@@ -7,10 +7,10 @@ import com.kouceng.prolab2.dusmanlar.*;
 
 public class civiKulesi extends kule {
 
-    public static float range;
+    public static float range = 150;
 
     public civiKulesi(float x, float y) {
-        super(15, 150, 2000, 70, x, y);
+        super(15, range, 2000, 70, x, y);
     }
 
     @Override
