@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.kouceng.prolab2.Prolab2;
 
@@ -32,7 +34,7 @@ public class GameScreen implements Screen {
     private OrthographicCamera camera;
     private ShapeRenderer shapeRenderer;
 
-    // Game State
+    // Oyun state
     private int scrap = 200;
     private int garageHp = 100;
     private int wave = 0;
@@ -44,21 +46,26 @@ public class GameScreen implements Screen {
     private Array<kule> towers;
     private Array<Vector2> path;
 
-    // Wave Management
+    // Path için collision
+    private Array<Rectangle> pathRects;
+
+    // Ghost tower
+    private String selectedTowerType = null;
+    private float towerGhostRange = 100;
+
+    // Spawn sistemi
     private Array<dusman> spawnQueue;
     private long lastSpawnTime = 0;
     private final int SPAWN_INTERVAL = 1200;
 
-    // Input
-    private String selectedTowerType = null; // "Civi", "Anahtar", "Yag"
-
     public GameScreen(final Prolab2 game) {
         this.game = game;
 
-        this.enemies = new Array<>();
-        this.towers = new Array<>();
-        this.path = new Array<>();
-        this.spawnQueue = new Array<>();
+        enemies = new Array<>();
+        towers = new Array<>();
+        path = new Array<>();
+        pathRects = new Array<>();
+        spawnQueue = new Array<>();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 600);
@@ -75,6 +82,22 @@ public class GameScreen implements Screen {
         path.add(new Vector2(500, 200));
         path.add(new Vector2(700, 200));
         path.add(new Vector2(700, 300));
+
+        // RECT yol collision hesaplama
+        for (int i = 0; i < path.size - 1; i++) {
+            Vector2 a = path.get(i);
+            Vector2 b = path.get(i + 1);
+
+            float minX = Math.min(a.x, b.x);
+            float minY = Math.min(a.y, b.y);
+            float width = Math.abs(a.x - b.x);
+            float height = Math.abs(a.y - b.y);
+
+            if (width == 0) width = 10;
+            if (height == 0) height = 10;
+
+            pathRects.add(new Rectangle(minX - 10, minY - 10, width + 20, height + 20));
+        }
     }
 
     @Override
@@ -88,134 +111,118 @@ public class GameScreen implements Screen {
 
         camera.update();
         shapeRenderer.setProjectionMatrix(camera.combined);
-        game.batch.setProjectionMatrix(camera.combined);
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        // ➤ Path çizimi
+        // Path çiz
         shapeRenderer.setColor(Color.DARK_GRAY);
-        if (path.size > 0) {
-            Vector2 p1 = path.get(0);
-            for (int i = 1; i < path.size; i++) {
-                Vector2 p2 = path.get(i);
-                shapeRenderer.rectLine(p1, p2, 5);
-                p1 = p2;
-            }
+        for (Rectangle r : pathRects) {
+            shapeRenderer.rect(r.x, r.y, r.width, r.height);
         }
 
-        // ➤ Garaj
+        // Garaj
         shapeRenderer.setColor(Color.BLACK);
         shapeRenderer.rect(700, 280, 50, 40);
 
-        // ➤ Kuleler
-        for (kule t : towers) {
-            t.draw(shapeRenderer);
-        }
+        // Kuleler
+        for (kule t : towers) t.draw(shapeRenderer);
 
-        // ➤ Düşmanlar
-        for (dusman e : enemies) {
-            e.draw(shapeRenderer);
-        }
+        // Düşmanlar
+        for (dusman e : enemies) e.draw(shapeRenderer);
+
+        // Ghost tower
+        drawGhostTower();
 
         shapeRenderer.end();
 
-        // ➤ UI
-        game.batch.begin();
-        game.font.setColor(Color.BLACK);
-        game.font.draw(game.batch, "Can: " + garageHp, 10, 580);
-        game.font.draw(game.batch, "Hurda: " + scrap, 100, 580);
-        game.font.draw(game.batch, "Dalga: " + wave, 200, 580);
-
-        game.font.draw(game.batch, "Kuleler: [1] Civi (50) | [2] Anahtar (75) | [3] Yag (70)", 10, 20);
-        game.font.draw(game.batch, "[SPACE] Yeni Dalga", 10, 40);
-
-        if (selectedTowerType != null) {
-            game.font.draw(game.batch, "Secili: " + selectedTowerType, 400, 580);
-        }
-
-        if (isGameOver) {
-            game.font.getData().setScale(2);
-            if (garageHp > 0) {
-                game.font.setColor(Color.GREEN);
-                game.font.draw(game.batch, "KAZANDIN!", 300, 300);
-            } else {
-                game.font.setColor(Color.RED);
-                game.font.draw(game.batch, "KAYBETTIN!", 300, 300);
-            }
-            game.font.getData().setScale(1);
-        }
-
-        game.batch.end();
+        drawUI();
     }
 
+    // ===================================================
+    //             GHOST TOWER (şeffaf kule)
+    // ===================================================
+    private void drawGhostTower() {
+        if (selectedTowerType == null) return;
+
+        Vector3 m = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+        camera.unproject(m);
+
+        // Range
+        shapeRenderer.setColor(0, 0.5f, 1, 0.15f);
+        shapeRenderer.circle(m.x, m.y, towerGhostRange);
+
+        // Tower ghost kare
+        if (selectedTowerType.equals("Civi")) shapeRenderer.setColor(0.7f, 0.7f, 0.7f, 0.6f);
+        if (selectedTowerType.equals("Anahtar")) shapeRenderer.setColor(1f, 0.5f, 0f, 0.6f);
+        if (selectedTowerType.equals("Yag")) shapeRenderer.setColor(0f, 0f, 0f, 0.6f);
+
+        shapeRenderer.rect(m.x - 15, m.y - 15, 30, 30);
+    }
+
+    // ===================================================
+    //                        INPUT
+    // ===================================================
     private void handleInput() {
         if (isGameOver) return;
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) startNextWave();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) selectedTowerType = "Civi";
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) selectedTowerType = "Anahtar";
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) selectedTowerType = "Yag";
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
+            selectedTowerType = "Civi";
+            towerGhostRange = civiKulesi.range;
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
+            selectedTowerType = "Anahtar";
+            towerGhostRange = anahtarKulesi.range;
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
+            selectedTowerType = "Yag";
+            towerGhostRange = yagKulesi.range;
+        }
 
-        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-            if (selectedTowerType != null) {
-                float x = Gdx.input.getX();
-                float y = Gdx.graphics.getHeight() - Gdx.input.getY();
-                placeTower(x, y);
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && selectedTowerType != null) {
+            Vector3 m = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(m);
+
+            if (!isOnPath(m.x, m.y)) {
+                placeTower(m.x, m.y);
             }
         }
+    }
+
+    private boolean isOnPath(float x, float y) {
+        for (Rectangle r : pathRects)
+            if (r.contains(x, y)) return true;
+
+        return false;
     }
 
     private void placeTower(float x, float y) {
         kule t = null;
 
-        if ("Civi".equals(selectedTowerType) && scrap >= 50)
-            t = new civiKulesi(x - 15, y - 15);
+        if (selectedTowerType.equals("Civi") && scrap >= 50)
+            t = new civiKulesi(x, y);
 
-        if ("Anahtar".equals(selectedTowerType) && scrap >= 75)
-            t = new anahtarKulesi(x - 15, y - 15);
+        if (selectedTowerType.equals("Anahtar") && scrap >= 75)
+            t = new anahtarKulesi(x, y);
 
-        if ("Yag".equals(selectedTowerType) && scrap >= 70)
-            t = new yagKulesi(x - 15, y - 15);
+        if (selectedTowerType.equals("Yag") && scrap >= 70)
+            t = new yagKulesi(x, y);
 
         if (t != null) {
-            towers.add(t);
             scrap -= t.getCost();
+            towers.add(t);
             selectedTowerType = null;
         }
     }
 
-    private void startNextWave() {
-        if (isWaveActive || isGameOver) return;
-        wave++;
-        generateWave(wave);
-        isWaveActive = true;
-    }
-
-    private void generateWave(int waveNum) {
-        spawnQueue.clear();
-
-        if (waveNum == 1) {
-            spawnQueue.add(new crossMotor());
-            spawnQueue.add(new crossMotor());
-            spawnQueue.add(new zirhliKamyon());
-            spawnQueue.add(new ucak());
-        } else {
-            Random r = new Random();
-            int count = 5 + r.nextInt(6);
-            for (int i = 0; i < count; i++) {
-                int t = r.nextInt(3);
-                if (t == 0) spawnQueue.add(new crossMotor());
-                if (t == 1) spawnQueue.add(new zirhliKamyon());
-                if (t == 2) spawnQueue.add(new ucak());
-            }
-        }
-    }
-
+    // ===================================================
+    //                     WAVE / UPDATE
+    // ===================================================
     private void update(float delta) {
         if (isGameOver) return;
 
-        // ➤ Spawn sistemi
+        // Enemy spawn
         if (isWaveActive && spawnQueue.size > 0) {
             if (System.currentTimeMillis() - lastSpawnTime > SPAWN_INTERVAL) {
                 dusman e = spawnQueue.removeIndex(0);
@@ -225,7 +232,7 @@ public class GameScreen implements Screen {
             }
         }
 
-        // ➤ Düşman hareketi
+        // Enemy movement
         Iterator<dusman> it = enemies.iterator();
         while (it.hasNext()) {
             dusman e = it.next();
@@ -242,11 +249,12 @@ public class GameScreen implements Screen {
             }
         }
 
-        // ➤ Kule saldırısı
+        // Tower attack
         for (kule t : towers) {
             if (!t.canAttack()) continue;
 
             dusman target = null;
+
             for (dusman e : enemies) {
                 if (t.isInRange(e)) {
                     target = e;
@@ -264,26 +272,66 @@ public class GameScreen implements Screen {
             }
         }
 
-        // ➤ Dalga bitişi
+        // Wave end
         if (isWaveActive && spawnQueue.size == 0 && enemies.size == 0) {
             isWaveActive = false;
             if (wave >= 2) isGameOver = true;
         }
     }
 
-    @Override
-    public void show() {}
-    @Override
-    public void resize(int width, int height) {}
-    @Override
-    public void pause() {}
-    @Override
-    public void resume() {}
-    @Override
-    public void hide() {}
+    private void startNextWave() {
+        if (isWaveActive || isGameOver) return;
 
-    @Override
-    public void dispose() {
-        shapeRenderer.dispose();
+        wave++;
+        generateWave(wave);
+        isWaveActive = true;
     }
+
+    private void generateWave(int waveNum) {
+        spawnQueue.clear();
+        Random r = new Random();
+
+        int count = 5 + r.nextInt(6);
+
+        for (int i = 0; i < count; i++) {
+            int t = r.nextInt(3);
+            if (t == 0) spawnQueue.add(new crossMotor());
+            if (t == 1) spawnQueue.add(new zirhliKamyon());
+            if (t == 2) spawnQueue.add(new ucak());
+        }
+    }
+
+    // ===================================================
+    //                        UI
+    // ===================================================
+    private void drawUI() {
+        game.batch.begin();
+
+        game.font.setColor(Color.BLACK);
+        game.font.draw(game.batch, "Can: " + garageHp, 10, 580);
+        game.font.draw(game.batch, "Hurda: " + scrap, 100, 580);
+        game.font.draw(game.batch, "Dalga: " + wave, 200, 580);
+        game.font.draw(game.batch, "[1] Civi | [2] Anahtar | [3] Yag | [SPACE] Dalga", 10, 20);
+
+        if (selectedTowerType != null)
+            game.font.draw(game.batch, "Secili: " + selectedTowerType, 400, 580);
+
+        if (isGameOver) {
+            game.font.getData().setScale(2);
+            if (garageHp > 0)
+                game.font.draw(game.batch, "KAZANDIN!", 300, 300);
+            else
+                game.font.draw(game.batch, "KAYBETTIN!", 300, 300);
+            game.font.getData().setScale(1);
+        }
+
+        game.batch.end();
+    }
+
+    @Override public void dispose() { shapeRenderer.dispose(); }
+    @Override public void show() {}
+    @Override public void resize(int w, int h) {}
+    @Override public void pause() {}
+    @Override public void resume() {}
+    @Override public void hide() {}
 }

@@ -7,6 +7,8 @@ import com.kouceng.prolab2.dusmanlar.*;
 
 public class civiKulesi extends kule {
 
+    public static float range;
+
     public civiKulesi(float x, float y) {
         super(15, 150, 2000, 70, x, y);
     }
@@ -16,6 +18,9 @@ public class civiKulesi extends kule {
         e.takeDamage(this.damage);
         e.slowDown(3000);
         this.lastAttackTime = System.currentTimeMillis();
+    }
+    public float getRange() {
+        return range;
     }
 
     @Override

@@ -7,6 +7,8 @@ import com.kouceng.prolab2.dusmanlar.*;
 
 public class anahtarKulesi extends kule {
 
+    public static float range;
+
     public anahtarKulesi(float x, float y) {
         super(10, 150, 1000, 50, x, y);
     }
@@ -25,5 +27,9 @@ public class anahtarKulesi extends kule {
     public void draw(ShapeRenderer shapeRenderer) {
         shapeRenderer.setColor(Color.BLUE);
         shapeRenderer.rect(position.x, position.y, 30, 30);
+    }
+
+    public float getRange() {
+        return range;
     }
 }
