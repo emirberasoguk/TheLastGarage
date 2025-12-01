@@ -25,7 +25,7 @@ import java.util.Random;
 
 public class GameScreen implements Screen {
 
-    private final MyGdxGame game;
+    private final Prolab2 game;
     private OrthographicCamera camera;
     private ShapeRenderer shapeRenderer;
 
@@ -49,7 +49,7 @@ public class GameScreen implements Screen {
     // Input
     private String selectedTowerType = null; // "Civata", "Anahtar", "Yaglama"
 
-    public GameScreen(MyGdxGame game) {
+    public GameScreen(Prolab2 game) {
         this.game = game;
         this.enemies = new Array<>();
         this.towers = new Array<>();

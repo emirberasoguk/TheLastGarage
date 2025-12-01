@@ -3,6 +3,7 @@ package com.kouceng.prolab2.kuleler;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.kouceng.prolab2.dusmanlar.dusman;
 
 // Kuleler için temel soyut sınıf
 public abstract class kule {
@@ -24,11 +25,11 @@ public abstract class kule {
     }
 
     // Soyut Metotlar
-    public abstract void attack(Enemy e, Array<Enemy> allEnemies);
+    public abstract void attack(dusman e, Array<dusman> allEnemies);
     public abstract void draw(ShapeRenderer shapeRenderer);
 
     // Ortak Metotlar
-    public boolean isInRange(Enemy e) {
+    public boolean isInRange(dusman e) {
         float dist = position.dst(e.getX(), e.getY());
         return dist <= range;
     }

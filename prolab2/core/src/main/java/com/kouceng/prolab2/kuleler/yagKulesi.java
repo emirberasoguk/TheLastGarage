@@ -3,6 +3,7 @@ package com.kouceng.prolab2.kuleler;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
+import com.kouceng.prolab2.dusmanlar.dusman;
 
 public class yagKulesi extends kule {
 
@@ -11,14 +12,14 @@ public class yagKulesi extends kule {
     }
 
     @Override
-    public void attack(Enemy target, Array<Enemy> allEnemies) {
+    public void attack(dusman target, Array<dusman> allEnemies) {
         if (target.isFlying()) return;
 
         float aoeRadius = 50;
         float tx = target.getX() + 10; // Center approx
         float ty = target.getY() + 10;
 
-        for (Enemy e : allEnemies) {
+        for (dusman e : allEnemies) {
             if (e.isFlying()) continue;
 
             float ex = e.getX() + 10;

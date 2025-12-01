@@ -3,6 +3,7 @@ package com.kouceng.prolab2.kuleler;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
+import com.kouceng.prolab2.dusmanlar.dusman;
 
 public class anahtarKulesi extends kule {
 
@@ -11,7 +12,7 @@ public class anahtarKulesi extends kule {
     }
 
     @Override
-    public void attack(Enemy e, Array<Enemy> allEnemies) {
+    public void attack(dusman e, Array<dusman> allEnemies) {
         int appliedDamage = this.damage;
         if (e.getArmor() > 0) {
             appliedDamage /= 2;

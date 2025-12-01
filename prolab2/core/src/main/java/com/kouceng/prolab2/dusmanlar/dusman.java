@@ -22,6 +22,7 @@ public abstract class dusman {
 
     protected float baseSpeed;
     protected long slowEndTime = 0;
+    protected int damage = 20; // Hasar
 
     // Kurucu Metot (Constructor)
     public dusman(int hp, float speed, double armor, int reward, boolean isFlying) {
@@ -112,4 +113,5 @@ public abstract class dusman {
     public int getReward() { return reward; }
     public boolean isFlying() { return isFlying; }
     public double getArmor() { return armor; }
+    public int getDamage() { return damage; }
 }
