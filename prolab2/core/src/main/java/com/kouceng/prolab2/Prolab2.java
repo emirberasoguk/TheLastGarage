@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.kouceng.prolab2.gui.GameScreen;
+import com.kouceng.prolab2.gui.MainMenuScreen;
 
 public class Prolab2 extends Game {
 
@@ -15,7 +16,7 @@ public class Prolab2 extends Game {
         batch = new SpriteBatch();
         font = new BitmapFont();
 
-        setScreen(new GameScreen(this)); // FirstScreen yerine GameScreen
+        setScreen(new MainMenuScreen(this));
     }
 
     @Override
@@ -23,4 +24,6 @@ public class Prolab2 extends Game {
         batch.dispose();
         font.dispose();
     }
+
+
 }

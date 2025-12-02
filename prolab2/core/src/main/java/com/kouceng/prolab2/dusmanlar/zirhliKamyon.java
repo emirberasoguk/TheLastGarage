@@ -4,9 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.util.Random;
 
-public class zirhliKamyon extends dusman {
+public class ZirhliKamyon extends dusman {
 
-    public zirhliKamyon() {
+    public ZirhliKamyon() {
         super(75, 25, 0, 20, false, 10);
         Random rand = new Random();
         this.armor = 50 + rand.nextInt(51);
