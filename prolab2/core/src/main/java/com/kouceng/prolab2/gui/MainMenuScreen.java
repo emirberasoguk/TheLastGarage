@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector3;
 import com.kouceng.prolab2.Prolab2;
 
 public class MainMenuScreen implements Screen {
@@ -67,9 +68,11 @@ public class MainMenuScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
-        // Mouse pozisyonu
-        float mx = Gdx.input.getX();
-        float my = 720 - Gdx.input.getY();
+        // Mouse pozisyonu - Camera Unproject ile düzeltildi
+        Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+        camera.unproject(mousePos);
+        float mx = mousePos.x;
+        float my = mousePos.y;
 
         game.batch.begin();
 

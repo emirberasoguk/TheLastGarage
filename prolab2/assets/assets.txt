@@ -4,11 +4,13 @@ anahtar.png
 anahtar_ghost.png
 baslat.png
 baslat_hover.png
+button1.png
 button2.png
 cikis.png
 cikis_hover.png
 civi.png
 civi_ghost.png
+core\src\main\java\com\kouceng\prolab2\log\savas_gunlugu.txt
 fonts/Pixel Game.otf
 logo.png
 menu_bg.png

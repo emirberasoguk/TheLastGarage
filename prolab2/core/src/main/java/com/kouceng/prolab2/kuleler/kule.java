@@ -2,6 +2,7 @@ package com.kouceng.prolab2.kuleler;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.kouceng.prolab2.dusmanlar.*;
 
 public abstract class kule {
@@ -21,6 +22,8 @@ public abstract class kule {
         this.position = new Vector2(x, y);
         this.lastAttackTime = 0;
     }
+
+    public abstract void draw(ShapeRenderer shapeRenderer);
 
     // --- Soyut: Kule vurduğunda çalışacak (her kule kendi mantığıyla hasar verir)
     public abstract void onHit(dusman e, Array<dusman> allEnemies);

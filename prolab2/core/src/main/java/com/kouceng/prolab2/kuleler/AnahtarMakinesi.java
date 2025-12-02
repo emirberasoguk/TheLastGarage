@@ -2,6 +2,7 @@ package com.kouceng.prolab2.kuleler;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.kouceng.prolab2.dusmanlar.*;
 
@@ -27,6 +28,11 @@ public class AnahtarMakinesi extends kule {
         if (finalDamage < 1) finalDamage = 1;
 
         e.takeDamage(finalDamage);
+    }
+
+    @Override
+    public void draw(ShapeRenderer shapeRenderer) {
+        // Rendered via SpriteBatch in GameScreen
     }
 
     public void render(SpriteBatch batch) {
