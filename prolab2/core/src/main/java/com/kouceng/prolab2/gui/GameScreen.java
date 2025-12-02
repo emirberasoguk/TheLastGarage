@@ -25,6 +25,7 @@ import com.kouceng.prolab2.kuleler.kule;
 import com.kouceng.prolab2.kuleler.civiKulesi;
 import com.kouceng.prolab2.kuleler.yagKulesi;
 import com.kouceng.prolab2.kuleler.anahtarKulesi;
+import com.kouceng.prolab2.kuleler.Mermi;
 
 import java.util.Iterator;
 import java.util.Random;
@@ -47,6 +48,7 @@ public class GameScreen implements Screen {
     // Entities
     private Array<dusman> enemies;
     private Array<kule> towers;
+    private Array<Mermi> projectiles;
     private Array<Vector2> path;
     private Array<Rectangle> pathRects;
 
@@ -64,6 +66,7 @@ public class GameScreen implements Screen {
 
         enemies = new Array<>();
         towers = new Array<>();
+        projectiles = new Array<>();
         path = new Array<>();
         pathRects = new Array<>();
         spawnQueue = new Array<>();
@@ -132,6 +135,9 @@ public class GameScreen implements Screen {
 
         // Towers
         for (kule t : towers) t.draw(shapeRenderer);
+
+        // Projectiles
+        for (Mermi m : projectiles) m.render(shapeRenderer);
 
         // Enemies
         for (dusman e : enemies) e.draw(shapeRenderer);
@@ -276,27 +282,31 @@ public class GameScreen implements Screen {
             }
 
             if (bestTarget != null) {
-                t.attack(bestTarget, enemies);
-                
-                // Check if target died (Note: yagKulesi might kill multiple, but we check main target here)
-                // Ideally, we should clean up dead enemies in a separate pass or use an iterator, 
-                // but for now, let's handle the primary target.
-                if (bestTarget.isDead()) {
-                    if (enemies.contains(bestTarget, true)) { // Check if still in list
-                        scrap += bestTarget.getReward();
-                        enemies.removeValue(bestTarget, true);
+                projectiles.add(t.attack(bestTarget));
+            }
+        }
+
+        // Projectile updates
+        Iterator<Mermi> pIter = projectiles.iterator();
+        while (pIter.hasNext()) {
+            Mermi m = pIter.next();
+            m.update(delta);
+
+            if (!m.isActive()) {
+                if (m.hasHit()) {
+                    m.getOwner().onHit(m.getTarget(), enemies);
+
+                    // Check deaths after hit
+                    Iterator<dusman> eIter = enemies.iterator();
+                    while (eIter.hasNext()) {
+                        dusman e = eIter.next();
+                        if (e.isDead()) {
+                            scrap += e.getReward();
+                            eIter.remove();
+                        }
                     }
                 }
-                
-                // Also clean up any other enemies that might have died from AOE (like yagKulesi)
-                Iterator<dusman> iter = enemies.iterator();
-                while (iter.hasNext()) {
-                    dusman potentialDead = iter.next();
-                    if (potentialDead.isDead()) {
-                        scrap += potentialDead.getReward();
-                        iter.remove();
-                    }
-                }
+                pIter.remove();
             }
         }
 

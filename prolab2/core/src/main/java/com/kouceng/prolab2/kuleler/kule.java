@@ -25,10 +25,15 @@ public abstract class kule {
     }
 
     // Soyut Metotlar
-    public abstract void attack(dusman e, Array<dusman> allEnemies);
+    public abstract void onHit(dusman e, Array<dusman> allEnemies);
     public abstract void draw(ShapeRenderer shapeRenderer);
 
     // Ortak Metotlar
+    public Mermi attack(dusman target) {
+        this.lastAttackTime = System.currentTimeMillis();
+        return new Mermi(position.x + 15, position.y + 15, target, this);
+    }
+
     public boolean isInRange(dusman e) {
         float dist = position.dst(e.getX(), e.getY());
         return dist <= range;

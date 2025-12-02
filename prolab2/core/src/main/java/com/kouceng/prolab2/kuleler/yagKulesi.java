@@ -14,7 +14,7 @@ public class yagKulesi extends kule {
     }
 
     @Override
-    public void attack(dusman target, Array<dusman> allEnemies) {
+    public void onHit(dusman target, Array<dusman> allEnemies) {
         if (target.isFlying()) return;
 
         float aoeRadius = 50;
@@ -32,7 +32,6 @@ public class yagKulesi extends kule {
                 e.takeDamage(this.damage);
             }
         }
-        this.lastAttackTime = System.currentTimeMillis();
     }
 
     public float getRange() {

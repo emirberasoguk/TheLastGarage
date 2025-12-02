@@ -14,10 +14,9 @@ public class civiKulesi extends kule {
     }
 
     @Override
-    public void attack(dusman e, Array<dusman> allEnemies) {
+    public void onHit(dusman e, Array<dusman> allEnemies) {
         e.takeDamage(this.damage);
         e.slowDown(3000);
-        this.lastAttackTime = System.currentTimeMillis();
     }
     public float getRange() {
         return range;

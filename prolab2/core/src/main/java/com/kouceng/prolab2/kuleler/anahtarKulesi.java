@@ -14,13 +14,12 @@ public class anahtarKulesi extends kule {
     }
 
     @Override
-    public void attack(dusman e, Array<dusman> allEnemies) {
+    public void onHit(dusman e, Array<dusman> allEnemies) {
         int appliedDamage = this.damage;
         if (e.getArmor() > 0) {
             appliedDamage /= 2;
         }
         e.takeDamage(appliedDamage);
-        this.lastAttackTime = System.currentTimeMillis();
     }
 
     @Override
