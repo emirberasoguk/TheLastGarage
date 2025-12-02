@@ -51,6 +51,10 @@ public abstract class dusman {
         return damage;
     }
 
+    public int getHp() {
+        return hp;
+    }
+
     public void move(float delta) {
         if (path == null || path.size == 0 || reachedEnd) return;
 

@@ -1,0 +1,81 @@
+============================================
+           S A V A S  G U N L U G U
+============================================
+
+Yeni oyun başlatıldı.
+--------------------------------------------
+[KULE] CiviAgAtar yerlestirildi (260,260)
+[KULE] AnahtarMakinesi yerlestirildi (320,410)
+[KULE] YagSizdirici yerlestirildi (550,560)
+
+=== DALGA 1 BASLADI ===
+[SPAWN] MotorluCapulcu haritaya girdi. HP=50
+[KULE] CiviAgAtar (260,260) → 'MotorluCapulcu' HEDEF ALINDI.
+[HIT] CiviAgAtar → MotorluCapulcu vuruldu. Yeni HP: 35
+[KULE] AnahtarMakinesi (320,410) → 'MotorluCapulcu' HEDEF ALINDI.
+[HIT] AnahtarMakinesi → MotorluCapulcu vuruldu. Yeni HP: 25
+[KULE] YagSizdirici (550,560) → 'MotorluCapulcu' HEDEF ALINDI.
+[HIT] YagSizdirici → MotorluCapulcu vuruldu. Yeni HP: 5
+[SPAWN] MotorluCapulcu haritaya girdi. HP=50
+[KULE] AnahtarMakinesi (320,410) → 'MotorluCapulcu' HEDEF ALINDI.
+[HIT] AnahtarMakinesi → MotorluCapulcu vuruldu. Yeni HP: 40
+[SPAWN] ZirhliKamyon haritaya girdi. HP=75
+[KULE] CiviAgAtar (260,260) → 'ZirhliKamyon' HEDEF ALINDI.
+[HIT] CiviAgAtar → ZirhliKamyon vuruldu. Yeni HP: 68
+[ACİL DURUM] MotorluCapulcu garaja ulaştı! Verilen zarar: -5 HP
+[KULE] AnahtarMakinesi (320,410) → 'ZirhliKamyon' HEDEF ALINDI.
+[HIT] AnahtarMakinesi → ZirhliKamyon vuruldu. Yeni HP: 66
+[ACİL DURUM] MotorluCapulcu garaja ulaştı! Verilen zarar: -5 HP
+[SPAWN] GozcuUcagi haritaya girdi. HP=50
+[KULE] AnahtarMakinesi (320,410) → 'GozcuUcagi' HEDEF ALINDI.
+[HIT] AnahtarMakinesi → GozcuUcagi vuruldu. Yeni HP: 40
+[KULE] YagSizdirici (550,560) → 'ZirhliKamyon' HEDEF ALINDI.
+[HIT] YagSizdirici → ZirhliKamyon vuruldu. Yeni HP: 56
+[ACİL DURUM] GozcuUcagi garaja ulaştı! Verilen zarar: -5 HP
+[ACİL DURUM] ZirhliKamyon garaja ulaştı! Verilen zarar: -10 HP
+=== DALGA 1 BITTI ===
+
+
+=== DALGA 2 BASLADI ===
+[SPAWN] MotorluCapulcu haritaya girdi. HP=50
+[SPAWN] ZirhliKamyon haritaya girdi. HP=75
+[SPAWN] ZirhliKamyon haritaya girdi. HP=75
+[KULE] CiviAgAtar (260,260) → 'MotorluCapulcu' HEDEF ALINDI.
+[SPAWN] ZirhliKamyon haritaya girdi. HP=75
+[HIT] CiviAgAtar → MotorluCapulcu vuruldu. Yeni HP: 35
+[SPAWN] ZirhliKamyon haritaya girdi. HP=75
+[KULE] CiviAgAtar (260,260) → 'MotorluCapulcu' HEDEF ALINDI.
+[HIT] CiviAgAtar → MotorluCapulcu vuruldu. Yeni HP: 20
+[KULE] AnahtarMakinesi (320,410) → 'MotorluCapulcu' HEDEF ALINDI.
+[SPAWN] ZirhliKamyon haritaya girdi. HP=75
+[HIT] AnahtarMakinesi → MotorluCapulcu vuruldu. Yeni HP: 10
+[KULE] AnahtarMakinesi (320,410) → 'MotorluCapulcu' HEDEF ALINDI.
+[HIT] AnahtarMakinesi → MotorluCapulcu vuruldu. Yeni HP: 0
+[ÖLÜM] MotorluCapulcu yok edildi. Ödül: +10
+[SPAWN] ZirhliKamyon haritaya girdi. HP=75
+[KULE] CiviAgAtar (260,260) → 'ZirhliKamyon' HEDEF ALINDI.
+[HIT] CiviAgAtar → ZirhliKamyon vuruldu. Yeni HP: 66
+[SPAWN] GozcuUcagi haritaya girdi. HP=50
+[KULE] AnahtarMakinesi (320,410) → 'ZirhliKamyon' HEDEF ALINDI.
+[HIT] AnahtarMakinesi → ZirhliKamyon vuruldu. Yeni HP: 73
+[KULE] CiviAgAtar (260,260) → 'ZirhliKamyon' HEDEF ALINDI.
+[HIT] CiviAgAtar → ZirhliKamyon vuruldu. Yeni HP: 65
+[SPAWN] GozcuUcagi haritaya girdi. HP=50
+[KULE] AnahtarMakinesi (320,410) → 'GozcuUcagi' HEDEF ALINDI.
+[HIT] AnahtarMakinesi → GozcuUcagi vuruldu. Yeni HP: 40
+[KULE] YagSizdirici (550,560) → 'ZirhliKamyon' HEDEF ALINDI.
+[HIT] YagSizdirici → ZirhliKamyon vuruldu. Yeni HP: 65
+[KULE] AnahtarMakinesi (320,410) → 'ZirhliKamyon' HEDEF ALINDI.
+[HIT] AnahtarMakinesi → ZirhliKamyon vuruldu. Yeni HP: 62
+[ACİL DURUM] GozcuUcagi garaja ulaştı! Verilen zarar: -5 HP
+[KULE] AnahtarMakinesi (320,410) → 'ZirhliKamyon' HEDEF ALINDI.
+[HIT] AnahtarMakinesi → ZirhliKamyon vuruldu. Yeni HP: 63
+[ACİL DURUM] GozcuUcagi garaja ulaştı! Verilen zarar: -5 HP
+[ACİL DURUM] ZirhliKamyon garaja ulaştı! Verilen zarar: -10 HP
+[ACİL DURUM] ZirhliKamyon garaja ulaştı! Verilen zarar: -10 HP
+[ACİL DURUM] ZirhliKamyon garaja ulaştı! Verilen zarar: -10 HP
+[ACİL DURUM] ZirhliKamyon garaja ulaştı! Verilen zarar: -10 HP
+[ACİL DURUM] ZirhliKamyon garaja ulaştı! Verilen zarar: -10 HP
+[ACİL DURUM] ZirhliKamyon garaja ulaştı! Verilen zarar: -10 HP
+=== DALGA 2 BITTI ===
+

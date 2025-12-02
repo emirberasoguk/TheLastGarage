@@ -20,10 +20,10 @@ public class Mermi {
 
     public void update(float delta) {
         if (!active) return;
-        
+
         // If target is dead or removed, destroy projectile
         if (target == null || target.isDead()) { // isDead logic might depend on specific implementation
-             // For now, if target is just null, deactive. 
+             // For now, if target is just null, deactive.
              // Usually we want it to travel to the last position, but checking target validity is easier.
              active = false;
              return;
@@ -33,7 +33,7 @@ public class Mermi {
         // We aim for the center of the target (assuming 30x30 size or similar, approx +15,+15)
         float targetX = target.getX() + 15;
         float targetY = target.getY() + 15;
-        
+
         Vector2 direction = new Vector2(targetX - position.x, targetY - position.y).nor();
         position.mulAdd(direction, speed * delta);
 
@@ -45,9 +45,9 @@ public class Mermi {
     }
 
     public void render(ShapeRenderer sr) {
-        if (owner instanceof anahtarKulesi) sr.setColor(Color.BLUE);
-        else if (owner instanceof civiKulesi) sr.setColor(Color.YELLOW);
-        else if (owner instanceof yagKulesi) sr.setColor(Color.RED);
+        if (owner instanceof AnahtarMakinesi) sr.setColor(Color.BLUE);
+        else if (owner instanceof CiviAgAtar) sr.setColor(Color.YELLOW);
+        else if (owner instanceof YagSizdirici) sr.setColor(Color.RED);
         else sr.setColor(Color.WHITE);
 
         sr.circle(position.x, position.y, 5);
@@ -60,7 +60,7 @@ public class Mermi {
     public boolean hasHit() {
         // Re-check distance or store a flag in update.
         // Since we set active=false on hit, we need to distinguish between "hit" and "fizzled".
-        // Let's change the logic slightly. 
+        // Let's change the logic slightly.
         if (target == null) return false;
         float targetX = target.getX() + 15;
         float targetY = target.getY() + 15;

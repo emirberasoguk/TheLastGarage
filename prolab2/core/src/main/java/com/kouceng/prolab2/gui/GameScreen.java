@@ -15,27 +15,22 @@ import com.badlogic.gdx.utils.Array;
 import com.kouceng.prolab2.Prolab2;
 
 // Enemies
-import com.kouceng.prolab2.dusmanlar.dusman;
-import com.kouceng.prolab2.dusmanlar.crossMotor;
-import com.kouceng.prolab2.dusmanlar.ucak;
-import com.kouceng.prolab2.dusmanlar.zirhliKamyon;
+import com.kouceng.prolab2.dusmanlar.*;
 
 // Towers
-import com.kouceng.prolab2.kuleler.kule;
-import com.kouceng.prolab2.kuleler.civiKulesi;
-import com.kouceng.prolab2.kuleler.yagKulesi;
-import com.kouceng.prolab2.kuleler.anahtarKulesi;
+import com.kouceng.prolab2.kuleler.*;
 import com.kouceng.prolab2.kuleler.Mermi;
 
+// Combat Log
+import com.kouceng.prolab2.log.CombatLog;
+
 import java.util.Iterator;
-import java.util.Random;
 
 public class GameScreen implements Screen {
 
     final Prolab2 game;
     private OrthographicCamera camera;
     private ShapeRenderer shapeRenderer;
-
     private Texture mapTexture;
 
     // Game state
@@ -43,18 +38,25 @@ public class GameScreen implements Screen {
     private int garageHp = 100;
     private int wave = 0;
     private boolean isGameOver = false;
+    private boolean isPaused = false;
     private boolean isWaveActive = false;
+    private float gameSpeed = 1.0f;
 
     // Entities
     private Array<dusman> enemies;
     private Array<kule> towers;
     private Array<Mermi> projectiles;
+
     private Array<Vector2> path;
     private Array<Rectangle> pathRects;
+
+    // Tower Spots
+    private Array<Vector2> towerSpots;
 
     // Ghost Tower
     private String selectedTowerType = null;
     private float towerGhostRange = 100;
+    private Vector2 ghostSnapSpot = null;
 
     // Waves
     private Array<dusman> spawnQueue;
@@ -64,39 +66,52 @@ public class GameScreen implements Screen {
     public GameScreen(final Prolab2 game) {
         this.game = game;
 
+        CombatLog.resetLog();
+
         enemies = new Array<>();
         towers = new Array<>();
         projectiles = new Array<>();
         path = new Array<>();
         pathRects = new Array<>();
         spawnQueue = new Array<>();
+        towerSpots = new Array<>();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1280, 720);
-        shapeRenderer = new ShapeRenderer();
 
+        shapeRenderer = new ShapeRenderer();
         mapTexture = new Texture("MAP.png");
 
         initPath();
+        initTowerSpots();
     }
 
-    // ==========================================
-    //       PATH — MAP’e GÖRE ÇIKARILDI
-    // ==========================================
+    private void restartGame() {
+        scrap = 200;
+        garageHp = 100;
+        wave = 0;
+        isGameOver = false;
+        isWaveActive = false;
+        isPaused = false;
+
+        enemies.clear();
+        towers.clear();
+        projectiles.clear();
+        spawnQueue.clear();
+
+        CombatLog.resetLog();
+    }
+
     private void initPath() {
-
-        path.add(new Vector2(-20, 340));     // giriş
-        path.add(new Vector2(350, 340));
-        path.add(new Vector2(350, 560));
-        path.add(new Vector2(655, 560));
+        path.add(new Vector2(-20, 330)); //start
+        path.add(new Vector2(400, 330));
+        path.add(new Vector2(400, 480));
+        path.add(new Vector2(655, 480));
         path.add(new Vector2(655, 180));
-        path.add(new Vector2(960, 180));
-        path.add(new Vector2(960, 340));
-        path.add(new Vector2(1020, 340));    // BASE
+        path.add(new Vector2(1110, 180));
+        path.add(new Vector2(1110, 450)); //base
 
-        // Collision Rectangles
         for (int i = 0; i < path.size - 1; i++) {
-
             Vector2 a = path.get(i);
             Vector2 b = path.get(i + 1);
 
@@ -112,139 +127,262 @@ public class GameScreen implements Screen {
         }
     }
 
-    // ==========================================
-    //                RENDER
-    // ==========================================
+    private void initTowerSpots() {
+        towerSpots.add(new Vector2(260, 260));
+        towerSpots.add(new Vector2(320, 410));
+        towerSpots.add(new Vector2(550, 390));
+        towerSpots.add(new Vector2(1050, 260));
+        towerSpots.add(new Vector2(750, 420));
+        towerSpots.add(new Vector2(550, 560));
+        towerSpots.add(new Vector2(750, 260));
+    }
+
     @Override
     public void render(float delta) {
 
-        handleInput();
-        update(delta);
+        if (!isGameOver && !isPaused) {
+            handleInput();
+            update(delta);
+        } else {
+            handleInput();  // Pause & Restart çalışsın
+        }
 
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
+        // Background
         game.batch.begin();
         game.batch.draw(mapTexture, 0, 0, 1280, 720);
         game.batch.end();
 
+        // Darken screen on lose
+        if (isGameOver && garageHp <= 0) {
+            Gdx.gl.glEnable(GL20.GL_BLEND);
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.setColor(0, 0, 0, 0.6f);
+            shapeRenderer.rect(0, 0, 1280, 720);
+            shapeRenderer.end();
+            Gdx.gl.glDisable(GL20.GL_BLEND);
+        }
+
+        // Green tint on win
+        if (isGameOver && garageHp > 0) {
+            Gdx.gl.glEnable(GL20.GL_BLEND);
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.setColor(0, 1, 0, 0.4f);
+            shapeRenderer.rect(0, 0, 1280, 720);
+            shapeRenderer.end();
+            Gdx.gl.glDisable(GL20.GL_BLEND);
+        }
+
+        // Draw objects
+        drawGameObjects();
+
+        drawUI();
+
+        if (isGameOver) {
+            if (garageHp <= 0) drawLoseText();
+            else drawWinText();
+        }
+
+        if (isPaused && !isGameOver) drawPauseText();
+    }
+
+    private void drawPauseText() {
+        game.batch.begin();
+        game.font.getData().setScale(3f);
+        game.font.setColor(Color.YELLOW);
+        game.font.draw(game.batch, "PAUSE", 560, 400);
+        game.font.getData().setScale(1f);
+        game.batch.end();
+    }
+
+    private void drawLoseText() {
+        game.batch.begin();
+        game.font.getData().setScale(3f);
+        game.font.setColor(Color.RED);
+        game.font.draw(game.batch, "KAYBETTINIZ!", 510, 400);
+        game.font.getData().setScale(1f);
+        game.font.setColor(Color.WHITE);
+        game.font.draw(game.batch, "Tekrar oynamak icin : R", 570, 360);
+        game.batch.end();
+    }
+
+    private void drawWinText() {
+        game.batch.begin();
+        game.font.getData().setScale(3f);
+        game.font.setColor(Color.GREEN);
+        game.font.draw(game.batch, "KAZANDINIZ!", 510, 400);
+        game.font.getData().setScale(1f);
+        game.font.setColor(Color.BLACK);
+        game.font.draw(game.batch, "Tekrar oynamak icin : R", 555, 360);
+        game.batch.end();
+    }
+
+    private void drawGameObjects() {
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        // Towers
-        for (kule t : towers) t.draw(shapeRenderer);
+        // Tower slots
+        if (!isGameOver) {
+            shapeRenderer.setColor(0, 1, 0, 0.35f);
+            for (Vector2 s : towerSpots)
+                shapeRenderer.circle(s.x, s.y, 18);
+        }
 
-        // Projectiles
-        for (Mermi m : projectiles) m.render(shapeRenderer);
+        // Towers
+        for (kule t : towers)
+            t.draw(shapeRenderer);
+
+        // Bullets
+        for (Mermi m : projectiles)
+            m.render(shapeRenderer);
 
         // Enemies
-        for (dusman e : enemies) e.draw(shapeRenderer);
+        for (dusman e : enemies)
+            e.draw(shapeRenderer);
 
-        drawGhostTower();
+        if (!isGameOver)
+            drawGhostTower();
 
         shapeRenderer.end();
-
-        drawUI();
+        Gdx.gl.glDisable(GL20.GL_BLEND);
     }
 
-    // ==========================================
-    //          GHOST TOWER
-    // ==========================================
+    // ------------------ Ghost Tower ---------------------
     private void drawGhostTower() {
         if (selectedTowerType == null) return;
 
         Vector3 m = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(m);
 
-        // range
-        shapeRenderer.setColor(0, 0.4f, 1f, 0.20f);
-        shapeRenderer.circle(m.x, m.y, towerGhostRange);
+        ghostSnapSpot = getClosestSpot(m.x, m.y);
+        if (ghostSnapSpot == null) return;
 
-        // transparent tower
-        if (selectedTowerType.equals("Civi")) shapeRenderer.setColor(0.7f, 0.7f, 0.7f, 0.6f);
-        if (selectedTowerType.equals("Anahtar")) shapeRenderer.setColor(1f, 0.5f, 0f, 0.6f);
-        if (selectedTowerType.equals("Yag")) shapeRenderer.setColor(0f, 0f, 0f, 0.6f);
+        shapeRenderer.setColor(0, 0, 0, 0.25f);
+        shapeRenderer.circle(ghostSnapSpot.x, ghostSnapSpot.y, towerGhostRange);
 
-        shapeRenderer.rect(m.x - 15, m.y - 15, 30, 30);
+        if (selectedTowerType.equals("Civi"))
+            shapeRenderer.setColor(0.7f, 0.7f, 0.7f, 0.6f);
+        else if (selectedTowerType.equals("Anahtar"))
+            shapeRenderer.setColor(1f, 0.5f, 0f, 0.6f);
+        else if (selectedTowerType.equals("Yag"))
+            shapeRenderer.setColor(0f, 0f, 0f, 0.6f);
+
+        shapeRenderer.rect(ghostSnapSpot.x - 15, ghostSnapSpot.y - 15, 30, 30);
     }
 
-    // ==========================================
-    //               INPUT
-    // ==========================================
-    private void handleInput() {
-        if (isGameOver) return;
+    private Vector2 getClosestSpot(float x, float y) {
+        Vector2 best = null;
+        float min = 40;
+        for (Vector2 s : towerSpots) {
+            float d = Vector2.dst(x, y, s.x, s.y);
+            if (d < min) {
+                best = s;
+                min = d;
+            }
+        }
+        return best;
+    }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) startNextWave();
+    // ------------------ INPUT ---------------------
+    private void handleInput() {
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) restartGame();
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.P)) isPaused = !isPaused;
+
+        if (isPaused || isGameOver) return;
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) gameSpeed += 0.5f;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) gameSpeed = Math.max(0.5f, gameSpeed - 0.5f);
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
+            startNextWave();
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             selectedTowerType = "Civi";
-            towerGhostRange = civiKulesi.range;
+            towerGhostRange = CiviAgAtar.range;
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
             selectedTowerType = "Anahtar";
-            towerGhostRange = anahtarKulesi.range;
+            towerGhostRange = AnahtarMakinesi.range;
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
             selectedTowerType = "Yag";
-            towerGhostRange = yagKulesi.range;
+            towerGhostRange = YagSizdirici.range;
         }
 
-        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && selectedTowerType != null) {
-            Vector3 m = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.unproject(m);
+        if (selectedTowerType != null &&
+            Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) &&
+            ghostSnapSpot != null) {
 
-            if (!isOnPath(m.x, m.y)) {
-                placeTower(m.x, m.y);
-            }
+            placeTower(ghostSnapSpot.x, ghostSnapSpot.y);
         }
-    }
-
-    private boolean isOnPath(float x, float y) {
-        for (Rectangle r : pathRects)
-            if (r.contains(x, y)) return true;
-
-        return false;
     }
 
     private void placeTower(float x, float y) {
+
         kule t = null;
 
-        if (selectedTowerType.equals("Civi") && scrap >= 50)
-            t = new civiKulesi(x, y);
+        if (selectedTowerType.equals("Civi") && scrap >= 70)
+            t = new CiviAgAtar(x, y);
+        else if (selectedTowerType.equals("Anahtar") && scrap >= 50)
+            t = new AnahtarMakinesi(x, y);
+        else if (selectedTowerType.equals("Yag") && scrap >= 75)
+            t = new YagSizdirici(x, y);
 
-        if (selectedTowerType.equals("Anahtar") && scrap >= 75)
-            t = new anahtarKulesi(x, y);
+        if (t == null) return;
 
-        if (selectedTowerType.equals("Yag") && scrap >= 70)
-            t = new yagKulesi(x, y);
+        scrap -= t.getCost();
+        towers.add(t);
 
-        if (t != null) {
-            scrap -= t.getCost();
-            towers.add(t);
-            selectedTowerType = null;
-        }
+        CombatLog.write("[KULE] " + t.getClass().getSimpleName() +
+            " yerlestirildi (" + (int)x + "," + (int)y + ")");
+
+        towerSpots.removeValue(ghostSnapSpot, true);
+
+        ghostSnapSpot = null;
+        selectedTowerType = null;
     }
 
-    // ==========================================
-    //               GAME UPDATE
-    // ==========================================
+    // ------------------ UPDATE ---------------------
     private void update(float delta) {
 
-        if (isGameOver) return;
+        delta *= gameSpeed;
 
-        // Enemy spawning
+        if (garageHp <= 0 && !isGameOver) {
+            isGameOver = true;
+            return;
+        }
+
+        // WIN CONDITION → 2 wave bitti + base alive
+        if (wave == 2 && !isWaveActive && enemies.size == 0 && !isGameOver) {
+            isGameOver = true;
+            return;
+        }
+
+        // Spawn enemies
         if (isWaveActive && spawnQueue.size > 0) {
             if (System.currentTimeMillis() - lastSpawnTime > SPAWN_INTERVAL) {
+
                 dusman e = spawnQueue.removeIndex(0);
                 e.setPath(path);
+
+                CombatLog.write("[SPAWN] " + e.getClass().getSimpleName() +
+                    " haritaya girdi. HP=" + e.getHp());
+
                 enemies.add(e);
                 lastSpawnTime = System.currentTimeMillis();
             }
         }
 
-        // Enemy movement & reaching base
+        // Enemy movement
         Iterator<dusman> it = enemies.iterator();
         while (it.hasNext()) {
             dusman e = it.next();
@@ -252,137 +390,143 @@ public class GameScreen implements Screen {
 
             if (e.hasReachedEnd()) {
                 garageHp -= e.getDamage();
+                CombatLog.logEnemyReachedBase(e.getClass().getSimpleName(), e.getDamage());
                 it.remove();
-
-                if (garageHp <= 0) {
-                    garageHp = 0;
-                    isGameOver = true;
-                }
             }
         }
 
-        // Tower attack
+        // Tower attack AI – ENEMY CLOSEST TO BASE
         for (kule t : towers) {
             if (!t.canAttack()) continue;
 
-            dusman bestTarget = null;
-            float minDistance = Float.MAX_VALUE;
+            final float BASE_X = 1110;
+            final float BASE_Y = 450;
+
+            dusman target = null;
+            float bestDistance = Float.MAX_VALUE;
 
             for (dusman e : enemies) {
-                // Yag kulesi (Oil Tower) cannot target flying enemies
-                if (t instanceof yagKulesi && e.isFlying()) continue;
 
-                if (t.isInRange(e)) {
-                    float dist = Vector2.dst(t.getX(), t.getY(), e.getX(), e.getY());
-                    if (dist < minDistance) {
-                        minDistance = dist;
-                        bestTarget = e;
-                    }
+                if (t instanceof YagSizdirici && e.isFlying())
+                    continue;
+
+                if (!t.isInRange(e))
+                    continue;
+
+                float distToBase = Vector2.dst(e.getX(), e.getY(), BASE_X, BASE_Y);
+
+                if (distToBase < bestDistance) {
+                    bestDistance = distToBase;
+                    target = e;
                 }
             }
 
-            if (bestTarget != null) {
-                projectiles.add(t.attack(bestTarget));
+            if (target != null) {
+                CombatLog.logTowerAttack(
+                    t.getClass().getSimpleName(),
+                    t.getX(), t.getY(),
+                    target.getClass().getSimpleName()
+                );
+                projectiles.add(t.attack(target));
             }
         }
 
-        // Projectile updates
-        Iterator<Mermi> pIter = projectiles.iterator();
-        while (pIter.hasNext()) {
-            Mermi m = pIter.next();
+        // Bullet movement
+        Iterator<Mermi> itP = projectiles.iterator();
+        while (itP.hasNext()) {
+            Mermi m = itP.next();
             m.update(delta);
 
             if (!m.isActive()) {
-                if (m.hasHit()) {
-                    m.getOwner().onHit(m.getTarget(), enemies);
 
-                    // Check deaths after hit
-                    Iterator<dusman> eIter = enemies.iterator();
-                    while (eIter.hasNext()) {
-                        dusman e = eIter.next();
+                if (m.hasHit()) {
+                    dusman target = m.getTarget();
+                    m.getOwner().onHit(target, enemies);
+
+                    CombatLog.logHit(
+                        m.getOwner().getClass().getSimpleName(),
+                        target.getClass().getSimpleName(),
+                        target.isDead() ? 0 : target.getHp()
+                    );
+
+                    // Enemy death
+                    Iterator<dusman> itE = enemies.iterator();
+                    while (itE.hasNext()) {
+                        dusman e = itE.next();
                         if (e.isDead()) {
                             scrap += e.getReward();
-                            eIter.remove();
+                            CombatLog.logEnemyDeath(
+                                e.getClass().getSimpleName(),
+                                e.getReward()
+                            );
+                            itE.remove();
                         }
                     }
                 }
-                pIter.remove();
+
+                itP.remove();
             }
         }
 
-        // End wave
+        // Wave end
         if (isWaveActive && spawnQueue.size == 0 && enemies.size == 0) {
             isWaveActive = false;
+            CombatLog.logWaveEnd(wave);
         }
     }
 
     private void startNextWave() {
-        if (isWaveActive || isGameOver) return;
+        if (isWaveActive)
+            return;
 
         wave++;
-        generateWave(wave);
+        CombatLog.logWaveStart(wave);
+        generateWave();
         isWaveActive = true;
     }
 
-    private void generateWave(int waveNum) {
+    private void generateWave() {
+
         spawnQueue.clear();
 
-        if (waveNum == 1) {
-            // Wave 1: Fixed composition (2 CrossMotor, 1 ZirhliKamyon, 1 Ucak)
-            spawnQueue.add(new crossMotor());
-            spawnQueue.add(new crossMotor());
-            spawnQueue.add(new zirhliKamyon());
-            spawnQueue.add(new ucak());
-        } else {
-            // Other Waves: Min 5, Max 10 enemies, gradually increasing difficulty
-            int totalEnemies = Math.min(10, 3 + waveNum);
+        if (wave == 1) {
+            spawnQueue.add(new MotorluCapulcu());
+            spawnQueue.add(new MotorluCapulcu());
+            spawnQueue.add(new ZirhliKamyon());
+            spawnQueue.add(new GozcuUcagi());
+        }
+        else if (wave == 2) {
+            spawnQueue.add(new MotorluCapulcu());
 
-            // Ensure at least one of each type
-            spawnQueue.add(new crossMotor());
-            spawnQueue.add(new zirhliKamyon());
-            spawnQueue.add(new ucak());
+            spawnQueue.add(new ZirhliKamyon());
+            spawnQueue.add(new ZirhliKamyon());
+            spawnQueue.add(new ZirhliKamyon());
+            spawnQueue.add(new ZirhliKamyon());
+            spawnQueue.add(new ZirhliKamyon());
+            spawnQueue.add(new ZirhliKamyon());
 
-            // Fill the rest randomly
-            Random r = new Random();
-            for (int i = 3; i < totalEnemies; i++) {
-                int type = r.nextInt(3);
-                if (type == 0) spawnQueue.add(new crossMotor());
-                else if (type == 1) spawnQueue.add(new zirhliKamyon());
-                else spawnQueue.add(new ucak());
-            }
-            
-            // Shuffle for randomness
-            spawnQueue.shuffle();
+            spawnQueue.add(new GozcuUcagi());
+            spawnQueue.add(new GozcuUcagi());
         }
     }
 
-    // ==========================================
-    //                   UI
-    // ==========================================
     private void drawUI() {
+
         game.batch.begin();
 
-        float w = 1280, h = 720;
-
         game.font.setColor(Color.BLACK);
-        game.font.draw(game.batch, "Can: " + garageHp, 20, h - 20);
-        game.font.draw(game.batch, "Hurda: " + scrap, 150, h - 20);
-        game.font.draw(game.batch, "Dalga: " + wave, 300, h - 20);
+        game.font.draw(game.batch, "Can: " + garageHp, 20, 700);
+        game.font.draw(game.batch, "Hurda: " + scrap, 150, 700);
+        game.font.draw(game.batch, "Dalga: " + wave, 300, 700);
 
         game.font.draw(game.batch,
-            "[1] Civi | [2] Anahtar | [3] Yag | [SPACE] Dalga",
+            "[1] Civi | [2] Anahtar | [3] Yag | [SPACE] Wave | R: Restart | P: Pause",
             20, 40);
 
-        if (selectedTowerType != null)
-            game.font.draw(game.batch, "Secili: " + selectedTowerType, w - 250, h - 20);
+        game.font.draw(game.batch, "Hiz: x" + gameSpeed, 1150, 700);
 
-        if (isGameOver) {
-            game.font.getData().setScale(2);
-            game.font.draw(game.batch,
-                garageHp > 0 ? "KAZANDIN!" : "KAYBETTIN!",
-                w / 2f - 120, h / 2f);
-            game.font.getData().setScale(1);
-        }
+        if (selectedTowerType != null)
+            game.font.draw(game.batch, "Secili: " + selectedTowerType, 1000, 670);
 
         game.batch.end();
     }
@@ -391,6 +535,7 @@ public class GameScreen implements Screen {
         shapeRenderer.dispose();
         mapTexture.dispose();
     }
+
     @Override public void show() {}
     @Override public void resize(int w, int h) {}
     @Override public void pause() {}
