@@ -1,0 +1,60 @@
+[18:19:17] ======================================
+[18:19:17]         SAVAŞ GÜNLÜĞÜ BAŞLADI
+[18:19:17] ======================================
+[18:19:21] Dalga 0 Başladı. (Tip: CiviAgAtar, Sayı: 1)
+[18:19:24] Dalga 0 Başladı. (Tip: AnahtarMakinesi, Sayı: 1)
+[18:19:26] Dalga 0 Başladı. (Tip: YagSizdirici, Sayı: 1)
+[18:19:27] Dalga 1 Başladı. (Tip: Karışık, Sayı: 4)
+[18:19:27] Düşman 'MotorluCapulcu-ID100' (Can: 50/50, Zırh:0.0) haritaya girdi.
+[18:19:30] Düşman 'MotorluCapulcu-ID101' (Can: 50/50, Zırh:0.0) haritaya girdi.
+[18:19:32] Düşman 'ZirhliKamyon-ID102' (Can: 75/75, Zırh:74.0) haritaya girdi.
+[18:19:32] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %0 → 10; Zırh formülü ile Net Hasar 10.
+[18:19:32] Kalan Can: 40/50.
+[18:19:33] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %0 → 10; Zırh formülü ile Net Hasar 10.
+[18:19:33] Kalan Can: 30/50.
+[18:19:34] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %0 → 10; Zırh formülü ile Net Hasar 10.
+[18:19:34] Kalan Can: 20/50.
+[18:19:35] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %0 → 10; Zırh formülü ile Net Hasar 10.
+[18:19:35] Kalan Can: 10/50.
+[18:19:36] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %0 → 10; Zırh formülü ile Net Hasar 10.
+[18:19:36] Kalan Can: 0/50.
+[18:19:36] 'MotorluCapulcu-ID100' öldü. Ödül +10. Toplam Para: 15.
+[18:19:37] Düşman 'GozcuUcagi-ID103' (Can: 50/50, Zırh:0.0) haritaya girdi.
+[18:19:37] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %0 → 10; Zırh formülü ile Net Hasar 10.
+[18:19:37] Kalan Can: 40/50.
+[18:19:38] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %0 → 10; Zırh formülü ile Net Hasar 10.
+[18:19:38] Kalan Can: 30/50.
+[18:19:38] CiviAgAtar-ID001 atışı: Taban 15 → Zırhlı cezası %0 → 15; Zırh formülü ile Net Hasar 15.
+[18:19:38] Kalan Can: 15/50.
+[18:19:38] YagSizdirici-ID003 atışı: Taban 20 → Zırhlı cezası %0 → 20; Zırh formülü ile Net Hasar 20.
+[18:19:38] Kalan Can: -5/50.
+[18:19:38] 'MotorluCapulcu-ID101' öldü. Ödül +10. Toplam Para: 25.
+[18:19:40] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %0 → 10; Zırh formülü ile Net Hasar 10.
+[18:19:40] Kalan Can: 40/50.
+[18:19:40] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %4 → 6; Zırh formülü ile Net Hasar 2.
+[18:19:40] Kalan Can: 73/75.
+[18:19:41] CiviAgAtar-ID001 atışı: Taban 15 → Zırhlı cezası %0 → 15; Zırh formülü ile Net Hasar 15.
+[18:19:41] Kalan Can: 25/50.
+[18:19:41] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %4 → 6; Zırh formülü ile Net Hasar 2.
+[18:19:41] Kalan Can: 71/75.
+[18:19:42] YagSizdirici-ID003 atışı: Taban 20 → Zırhlı cezası %8 → 12; Zırh formülü ile Net Hasar 6.
+[18:19:42] Kalan Can: 65/75.
+[18:19:42] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %4 → 6; Zırh formülü ile Net Hasar 2.
+[18:19:42] Kalan Can: 63/75.
+[18:19:42] CiviAgAtar-ID001 atışı: Taban 15 → Zırhlı cezası %6 → 9; Zırh formülü ile Net Hasar 4.
+[18:19:42] Kalan Can: 59/75.
+[18:19:43] AnahtarMakinesi-ID002 atışı: Taban 10 → Zırhlı cezası %4 → 6; Zırh formülü ile Net Hasar 2.
+[18:19:43] Kalan Can: 57/75.
+[18:19:44] CiviAgAtar-ID001 atışı: Taban 15 → Zırhlı cezası %6 → 9; Zırh formülü ile Net Hasar 4.
+[18:19:44] Kalan Can: 53/75.
+[18:19:45] YagSizdirici-ID003 atışı: Taban 20 → Zırhlı cezası %8 → 12; Zırh formülü ile Net Hasar 6.
+[18:19:45] Kalan Can: 47/75.
+[18:19:46] 'GozcuUcagi-ID103' üsse ulaştı. Oyuncu Canı: 95 (-5)
+[18:19:46] CiviAgAtar-ID001 atışı: Taban 15 → Zırhlı cezası %6 → 9; Zırh formülü ile Net Hasar 4.
+[18:19:46] Kalan Can: 43/75.
+[18:19:48] YagSizdirici-ID003 atışı: Taban 20 → Zırhlı cezası %8 → 12; Zırh formülü ile Net Hasar 6.
+[18:19:48] Kalan Can: 37/75.
+[18:19:48] CiviAgAtar-ID001 atışı: Taban 15 → Zırhlı cezası %6 → 9; Zırh formülü ile Net Hasar 4.
+[18:19:48] Kalan Can: 33/75.
+[18:19:53] 'ZirhliKamyon-ID102' üsse ulaştı. Oyuncu Canı: 85 (-10)
+[18:19:53] Dalga 1 Bitti.
