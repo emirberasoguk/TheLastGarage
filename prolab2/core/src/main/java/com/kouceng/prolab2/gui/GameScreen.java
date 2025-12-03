@@ -15,6 +15,17 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.kouceng.prolab2.Prolab2;
 
+// Scene2D & UI
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.Align;
+
 // Enemies
 import com.kouceng.prolab2.dusmanlar.*;
 
@@ -40,6 +51,15 @@ public class GameScreen implements Screen {
     private Texture mapTexture;
     private Texture panel1;
     private Texture towerSlotTexture;
+
+    // UI Stage & Buttons
+    private Stage uiStage;
+    private ImageButton btnCivi, btnAnahtar, btnYag;
+
+    // New button textures
+    private Texture texBtnCivi;
+    private Texture texBtnAnahtar;
+    private Texture texBtnYag;
 
     // NEW: GHOST textures
     private Texture texCiviGhost;
@@ -101,6 +121,35 @@ public class GameScreen implements Screen {
         texAnahtarGhost = new Texture("anahtar.png");
         texYagGhost = new Texture("yag.png");
 
+        // Load new button textures
+        texBtnCivi = new Texture("civi_buton_guncel.png");
+        texBtnAnahtar = new Texture("anahtar_buton_guncel.png");
+        texBtnYag = new Texture("yaglama_buton_guncel.png");
+
+        // --- UI SETUP ---
+        uiStage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(uiStage);
+
+        // 1. Civi Button (Cost 70)
+        TextureRegionDrawable drawableCivi = new TextureRegionDrawable(new TextureRegion(texBtnCivi));
+        btnCivi = new ImageButton(drawableCivi);
+        setupButton(btnCivi, "Civi", 70, 20, 15);
+
+        // 2. Anahtar Button (Cost 50)
+        TextureRegionDrawable drawableAnahtar = new TextureRegionDrawable(new TextureRegion(texBtnAnahtar));
+        btnAnahtar = new ImageButton(drawableAnahtar);
+        setupButton(btnAnahtar, "Anahtar", 50, 110, 15);
+
+        // 3. Yag Button (Cost 75)
+        TextureRegionDrawable drawableYag = new TextureRegionDrawable(new TextureRegion(texBtnYag));
+        btnYag = new ImageButton(drawableYag);
+        setupButton(btnYag, "Yag", 75, 200, 15);
+
+        uiStage.addActor(btnCivi);
+        uiStage.addActor(btnAnahtar);
+        uiStage.addActor(btnYag);
+        // ----------------
+
         initPath();
         initTowerSpots();
     }
@@ -158,10 +207,49 @@ public class GameScreen implements Screen {
         towerSpots.add(new Vector2(780, 280));
     }
 
+    private void setupButton(final ImageButton btn, final String type, final int cost, float x, float y) {
+        btn.setSize(64, 64);
+        btn.setPosition(x, y);
+        btn.setTransform(true);
+        btn.setOrigin(Align.center);
+
+        btn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (scrap >= cost) {
+                    selectedTowerType = type;
+                    if (type.equals("Civi")) towerGhostRange = CiviAgAtar.range;
+                    else if (type.equals("Anahtar")) towerGhostRange = AnahtarMakinesi.range;
+                    else if (type.equals("Yag")) towerGhostRange = YagSizdirici.range;
+                }
+            }
+
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                if (pointer == -1 && scrap >= cost) {
+                    btn.setScale(1.2f);
+                }
+            }
+
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                if (pointer == -1) {
+                    btn.setScale(1.0f);
+                }
+            }
+        });
+    }
+
     @Override
     public void render(float delta) {
 
         handleInput();
+        
+        // UPDATE BUTTON STATES
+        updateButtonState(btnCivi, 70);
+        updateButtonState(btnAnahtar, 50);
+        updateButtonState(btnYag, 75);
+
         if (!isGameOver && !isPaused)
             update(delta);
 
@@ -178,6 +266,10 @@ public class GameScreen implements Screen {
 
         game.batch.draw(panel1, 10, 10, 300, 60);
         game.batch.end();
+        
+        // Draw Buttons (Stage)
+        uiStage.act(delta);
+        uiStage.draw();
 
         drawObjects();
         drawUI();
@@ -292,6 +384,19 @@ public class GameScreen implements Screen {
         return best;
     }
 
+    private void updateButtonState(ImageButton btn, int cost) {
+        if (scrap < cost) {
+            btn.setColor(Color.GRAY); // Paramız yetmiyorsa gri
+            btn.setScale(1.0f); // Reset scale if it was hovered
+        } else {
+            // If mouse is NOT over it, reset color to white
+            // We rely on listener to handle hover scale, but here we ensure color is correct
+            if (btn.getColor().equals(Color.GRAY)) {
+                btn.setColor(Color.WHITE);
+            }
+        }
+    }
+
     // ======================================================
     // INPUT
     // ======================================================
@@ -311,18 +416,7 @@ public class GameScreen implements Screen {
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
             startNextWave();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-            selectedTowerType = "Civi";
-            towerGhostRange = CiviAgAtar.range;
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
-            selectedTowerType = "Anahtar";
-            towerGhostRange = AnahtarMakinesi.range;
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
-            selectedTowerType = "Yag";
-            towerGhostRange = YagSizdirici.range;
-        }
+        // KEYBOARD SELECTION REMOVED
 
         if (selectedTowerType != null &&
             Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) &&
@@ -533,6 +627,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
+        if (uiStage != null) uiStage.dispose();
         shapeRenderer.dispose();
         towerSlotTexture.dispose();
         mapTexture.dispose();
@@ -545,6 +640,11 @@ public class GameScreen implements Screen {
         CiviAgAtar.disposeTextures();
         AnahtarMakinesi.disposeTextures();
         YagSizdirici.disposeTextures();
+
+        // Dispose new button textures
+        if (texBtnCivi != null) texBtnCivi.dispose();
+        if (texBtnAnahtar != null) texBtnAnahtar.dispose();
+        if (texBtnYag != null) texBtnYag.dispose();
     }
 
     @Override public void show() {}

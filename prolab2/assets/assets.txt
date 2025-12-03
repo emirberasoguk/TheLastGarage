@@ -1,6 +1,7 @@
 .gitkeep
 MAP.png
 anahtar.png
+anahtar_buton_guncel.png
 anahtar_ghost.png
 baslat.png
 baslat_hover.png
@@ -9,12 +10,15 @@ button2.png
 cikis.png
 cikis_hover.png
 civi.png
+civi_buton_guncel.png
 civi_ghost.png
 core\src\main\java\com\kouceng\prolab2\log\savas_gunlugu.txt
 fonts/Pixel Game.otf
 logo.png
 menu_bg.png
 panel1.png
+prolab2/core/src/main/java/com/kouceng/prolab2/log/savas_gunlugu.txt
 slot.png
 yag.png
 yag_ghost.png
+yaglama_buton_guncel.png
