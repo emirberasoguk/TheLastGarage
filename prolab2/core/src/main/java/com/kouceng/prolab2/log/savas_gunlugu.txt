@@ -1,9 +1,0 @@
-============================================
-           S A V A S  G U N L U G U
-============================================
-
-Yeni oyun başlatıldı.
---------------------------------------------
-[KULE] CiviAgAtar yerlestirildi (320,425)
-[KULE] AnahtarMakinesi yerlestirildi (260,230)
-[KULE] YagSizdirici yerlestirildi (550,390)
